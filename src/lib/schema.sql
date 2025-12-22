@@ -20,7 +20,9 @@ create table public.users (
   email text,
   branch text,
   year text,
-  college text
+  college text,
+  phone text,
+  section text
 );
 
 -- Create quiz_attempts table
@@ -46,6 +48,8 @@ create policy "Allow public read on login_logs" on public.login_logs for select 
 
 create policy "Allow public insert to users" on public.users for insert with check (true);
 create policy "Allow public read on users" on public.users for select using (true);
+create policy "Allow public update to users" on public.users for update using (true);
 
 create policy "Allow public insert to quiz_attempts" on public.quiz_attempts for insert with check (true);
 create policy "Allow public read on quiz_attempts" on public.quiz_attempts for select using (true);
+create policy "Allow public update to quiz_attempts" on public.quiz_attempts for update using (true);
