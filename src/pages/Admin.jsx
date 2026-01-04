@@ -169,7 +169,7 @@ export default function Admin() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D] p-6">
+        <div className="min-h-screen bg-background p-6">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <motion.div
@@ -177,8 +177,8 @@ export default function Admin() {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-8"
                 >
-                    <h1 className="text-3xl font-bold text-white mb-2">Admin Panel</h1>
-                    <p className="text-gray-400">Decodedesk Quiz Results Management</p>
+                    <h1 className="text-3xl font-bold text-foreground mb-2">Admin Panel</h1>
+                    <p className="text-muted-foreground">Decodedesk Quiz Results Management</p>
                 </motion.div>
 
                 {/* Stats Cards */}
@@ -188,25 +188,25 @@ export default function Admin() {
                     transition={{ delay: 0.1 }}
                     className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8"
                 >
-                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700/50">
-                        <LogIn className="w-8 h-8 text-cyan-400 mb-3" />
-                        <p className="text-3xl font-bold text-white">{loginLogs.length}</p>
-                        <p className="text-gray-400 text-sm">Total Logins</p>
+                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-border/50">
+                        <LogIn className="w-8 h-8 text-primary mb-3" />
+                        <p className="text-3xl font-bold text-foreground">{loginLogs.length}</p>
+                        <p className="text-muted-foreground text-sm">Total Logins</p>
                     </div>
-                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700/50">
-                        <Users className="w-8 h-8 text-violet-400 mb-3" />
-                        <p className="text-3xl font-bold text-white">{stats.totalParticipants}</p>
-                        <p className="text-gray-400 text-sm">Quiz Completed</p>
+                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-border/50">
+                        <Users className="w-8 h-8 text-secondary mb-3" />
+                        <p className="text-3xl font-bold text-foreground">{stats.totalParticipants}</p>
+                        <p className="text-muted-foreground text-sm">Quiz Completed</p>
                     </div>
-                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700/50">
-                        <Trophy className="w-8 h-8 text-amber-400 mb-3" />
-                        <p className="text-3xl font-bold text-white">{stats.avgScore}</p>
-                        <p className="text-gray-400 text-sm">Average Score</p>
+                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-border/50">
+                        <Trophy className="w-8 h-8 text-accent mb-3" />
+                        <p className="text-3xl font-bold text-foreground">{stats.avgScore}</p>
+                        <p className="text-muted-foreground text-sm">Average Score</p>
                     </div>
-                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-gray-700/50">
-                        <Trophy className="w-8 h-8 text-pink-400 mb-3" />
-                        <p className="text-3xl font-bold text-white">{stats.topScore}/60</p>
-                        <p className="text-gray-400 text-sm">Highest Score</p>
+                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 border border-border/50">
+                        <Trophy className="w-8 h-8 text-accent mb-3" />
+                        <p className="text-3xl font-bold text-foreground">{stats.topScore}/60</p>
+                        <p className="text-muted-foreground text-sm">Highest Score</p>
                     </div>
                 </motion.div>
 
@@ -218,18 +218,18 @@ export default function Admin() {
                     className="flex flex-col sm:flex-row gap-4 mb-6"
                 >
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                         <Input
                             placeholder="Search by name or roll number..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-10 bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
+                            className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground"
                         />
                     </div>
                     <Button
                         onClick={() => refetch()}
                         variant="outline"
-                        className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                        className="border-border text-gray-300 hover:bg-card"
                     >
                         <RefreshCw className="w-4 h-4 mr-2" />
                         Refresh
@@ -237,7 +237,7 @@ export default function Admin() {
                     <Button
                         onClick={() => navigate(createPageUrl('UserLogins'))}
                         variant="outline"
-                        className="border-cyan-700 text-cyan-400 hover:bg-cyan-900/20"
+                        className="border-cyan-700 text-primary hover:bg-cyan-900/20"
                     >
                         <LogIn className="w-4 h-4 mr-2" />
                         Login Logs
@@ -245,14 +245,14 @@ export default function Admin() {
                     <Button
                         onClick={() => navigate(createPageUrl('DetailedResults'))}
                         variant="outline"
-                        className="border-violet-700 text-violet-400 hover:bg-violet-900/20"
+                        className="border-violet-700 text-secondary hover:bg-violet-900/20"
                     >
                         <FileSpreadsheet className="w-4 h-4 mr-2" />
                         View Detailed
                     </Button>
                     <Button
                         onClick={exportToCSV}
-                        className="bg-cyan-600 hover:bg-cyan-700 text-white"
+                        className="bg-primary hover:bg-cyan-700 text-foreground"
                     >
                         <Download className="w-4 h-4 mr-2" />
                         Export CSV
@@ -264,20 +264,20 @@ export default function Admin() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-gray-700/50 overflow-hidden"
+                    className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-border/50 overflow-hidden"
                 >
                     <div className="overflow-x-auto">
                         <Table>
                             <TableHeader>
-                                <TableRow className="border-gray-700 hover:bg-gray-800/50">
-                                    <TableHead className="text-gray-400">Rank</TableHead>
-                                    <TableHead className="text-gray-400">Name</TableHead>
-                                    <TableHead className="text-gray-400">Roll Number</TableHead>
-                                    <TableHead className="text-gray-400">Phone</TableHead>
-                                    <TableHead className="text-gray-400">College</TableHead>
-                                    <TableHead className="text-gray-400">Status</TableHead>
+                                <TableRow className="border-border hover:bg-card/50">
+                                    <TableHead className="text-muted-foreground">Rank</TableHead>
+                                    <TableHead className="text-muted-foreground">Name</TableHead>
+                                    <TableHead className="text-muted-foreground">Roll Number</TableHead>
+                                    <TableHead className="text-muted-foreground">Phone</TableHead>
+                                    <TableHead className="text-muted-foreground">College</TableHead>
+                                    <TableHead className="text-muted-foreground">Status</TableHead>
                                     <TableHead
-                                        className="text-gray-400 cursor-pointer hover:text-cyan-400"
+                                        className="text-muted-foreground cursor-pointer hover:text-primary"
                                         onClick={() => toggleSort('total_score')}
                                     >
                                         <div className="flex items-center gap-1">
@@ -286,7 +286,7 @@ export default function Admin() {
                                         </div>
                                     </TableHead>
                                     <TableHead
-                                        className="text-gray-400 cursor-pointer hover:text-cyan-400"
+                                        className="text-muted-foreground cursor-pointer hover:text-primary"
                                         onClick={() => toggleSort('total_time')}
                                     >
                                         <div className="flex items-center gap-1">
@@ -294,19 +294,19 @@ export default function Admin() {
                                             <ArrowUpDown className="w-4 h-4" />
                                         </div>
                                     </TableHead>
-                                    <TableHead className="text-gray-400">Date</TableHead>
+                                    <TableHead className="text-muted-foreground">Date</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {isLoading ? (
                                     <TableRow>
-                                        <TableCell colSpan={9} className="text-center py-8 text-gray-400">
+                                        <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
                                             Loading results...
                                         </TableCell>
                                     </TableRow>
                                 ) : filteredScores.length === 0 ? (
                                     <TableRow>
-                                        <TableCell colSpan={9} className="text-center py-8 text-gray-400">
+                                        <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
                                             No results found
                                         </TableCell>
                                     </TableRow>
@@ -314,27 +314,27 @@ export default function Admin() {
                                     filteredScores.map((score, index) => (
                                         <TableRow
                                             key={score.id}
-                                            className="border-gray-700/50 hover:bg-gray-800/30"
+                                            className="border-border/50 hover:bg-card/30"
                                         >
                                             <TableCell>
-                                                <span className={`font-bold ${index === 0 ? 'text-amber-400' :
+                                                <span className={`font-bold ${index === 0 ? 'text-accent' :
                                                     index === 1 ? 'text-gray-300' :
                                                         index === 2 ? 'text-amber-600' :
-                                                            'text-gray-400'
+                                                            'text-muted-foreground'
                                                     }`}>
                                                     #{index + 1}
                                                 </span>
                                             </TableCell>
-                                            <TableCell className="text-white font-medium">
+                                            <TableCell className="text-foreground font-medium">
                                                 {score.student_name}
                                             </TableCell>
                                             <TableCell className="text-gray-300">
                                                 {score.student_roll}
                                             </TableCell>
-                                            <TableCell className="text-gray-400">
+                                            <TableCell className="text-muted-foreground">
                                                 {score.student_phone || 'N/A'}
                                             </TableCell>
-                                            <TableCell className="text-gray-400 text-sm">
+                                            <TableCell className="text-muted-foreground text-sm">
                                                 {score.student_college || 'N/A'}
                                             </TableCell>
                                             <TableCell>
@@ -349,10 +349,10 @@ export default function Admin() {
                                             </TableCell>
                                             <TableCell>
                                                 <span className={`font-bold ${score.quiz_status === 'ELIMINATED_AFTER_LEVEL_1' || score.quiz_status === 'ELIMINATED_AFTER_LEVEL_2' ? 'text-red-400' :
-                                                    (score.total_score || 0) >= 50 ? 'text-cyan-400' :
-                                                        (score.total_score || 0) >= 40 ? 'text-violet-400' :
-                                                            (score.total_score || 0) >= 30 ? 'text-amber-400' :
-                                                                'text-gray-400'
+                                                    (score.total_score || 0) >= 50 ? 'text-primary' :
+                                                        (score.total_score || 0) >= 40 ? 'text-secondary' :
+                                                            (score.total_score || 0) >= 30 ? 'text-accent' :
+                                                                'text-muted-foreground'
                                                     }`}>
                                                     {score.total_score || 0}/{score.quiz_status === 'ELIMINATED_AFTER_LEVEL_1' ? 10 : score.quiz_status === 'ELIMINATED_AFTER_LEVEL_2' ? 30 : 60}
                                                 </span>
@@ -362,11 +362,11 @@ export default function Admin() {
                                             </TableCell>
                                             <TableCell className="text-gray-300">
                                                 <div className="flex items-center gap-1">
-                                                    <Clock className="w-4 h-4 text-gray-500" />
+                                                    <Clock className="w-4 h-4 text-muted-foreground" />
                                                     {formatTime(score.total_time)}
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="text-gray-400 text-sm">
+                                            <TableCell className="text-muted-foreground text-sm">
                                                 {new Date(score.created_date).toLocaleDateString()}
                                             </TableCell>
                                         </TableRow>

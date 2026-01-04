@@ -7,18 +7,18 @@ import NeonButton from '@/components/quiz/NeonButton';
 
 export default function Home() {
     return (
-        <div className="min-h-screen bg-[#0D0D0D] flex flex-col items-center justify-center p-6 overflow-hidden relative">
+        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 overflow-hidden relative">
             {/* Animated background elements */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
             </div>
 
             {/* Grid pattern overlay */}
             <div
                 className="absolute inset-0 opacity-20"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(0,240,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,240,255,0.1) 1px, transparent 1px)`,
+                    backgroundImage: `linear-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--primary) / 0.1) 1px, transparent 1px)`,
                     backgroundSize: '50px 50px'
                 }}
             />
@@ -36,7 +36,7 @@ export default function Home() {
                     transition={{ delay: 0.2, duration: 0.5 }}
                     className="mb-6"
                 >
-                    <h2 className="text-lg md:text-xl text-gray-400 font-medium tracking-widest uppercase">
+                    <h2 className="text-lg md:text-xl text-muted-foreground font-medium tracking-widest uppercase">
                         Pragati Engineering College
                     </h2>
                 </motion.div>
@@ -48,7 +48,7 @@ export default function Home() {
                     transition={{ delay: 0.4, duration: 0.5 }}
                     className="mb-4"
                 >
-                    <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
                         EPROZYNE
                     </h1>
                 </motion.div>
@@ -61,11 +61,11 @@ export default function Home() {
                     className="mb-8"
                 >
                     <div className="relative inline-block">
-                        <h1 className="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 tracking-tight">
+                        <h1 className="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary via-destructive to-accent tracking-tight">
                             DECODEDESK
                         </h1>
                         <motion.div
-                            className="absolute -inset-4 bg-cyan-400/20 rounded-lg blur-2xl -z-10"
+                            className="absolute -inset-4 bg-primary/20 rounded-lg blur-2xl -z-10"
                             animate={{ opacity: [0.5, 0.8, 0.5] }}
                             transition={{ repeat: Infinity, duration: 2 }}
                         />
@@ -79,9 +79,9 @@ export default function Home() {
                     transition={{ delay: 0.8, duration: 0.5 }}
                     className="mb-12"
                 >
-                    <p className="text-gray-400 text-lg tracking-wide">
+                    <p className="text-muted-foreground text-lg tracking-wide">
                         Organized by{' '}
-                        <span className="text-cyan-400 font-semibold">
+                        <span className="text-primary font-semibold">
                             Department of CSE
                         </span>
                     </p>
@@ -106,10 +106,10 @@ export default function Home() {
                             transition={{ delay: 1 + i * 0.1, duration: 0.3 }}
                             className="flex flex-col items-center gap-2"
                         >
-                            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 flex items-center justify-center">
-                                <item.icon className="w-6 h-6 text-cyan-400" />
+                            <div className="w-14 h-14 rounded-xl bg-card border border-border flex items-center justify-center">
+                                <item.icon className="w-6 h-6 text-primary" />
                             </div>
-                            <span className="text-xs text-gray-500">{item.label}</span>
+                            <span className="text-xs text-muted-foreground">{item.label}</span>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -132,7 +132,7 @@ export default function Home() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.4, duration: 0.5 }}
-                    className="mt-8 text-gray-500 text-sm"
+                    className="mt-8 text-muted-foreground text-sm"
                 >
                     3 Levels • 60 Questions • Test Your Knowledge
                 </motion.p>

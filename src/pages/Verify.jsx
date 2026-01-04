@@ -208,11 +208,11 @@ export default function Verify() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D] flex flex-col items-center justify-center p-6 overflow-hidden relative">
+        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 overflow-hidden relative">
             {/* Background elements */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-violet-500/10 rounded-full blur-3xl" />
+                <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-secondary/10 rounded-full blur-3xl" />
             </div>
 
             <motion.div
@@ -221,17 +221,17 @@ export default function Verify() {
                 transition={{ duration: 0.5 }}
                 className="relative z-10 w-full max-w-md"
             >
-                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
+                <div className="bg-card backdrop-blur-xl rounded-3xl p-8 border border-border shadow-2xl">
                     <div className="text-center mb-8">
                         <motion.h1
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
-                            className="text-3xl font-bold text-white mb-2"
+                            className="text-3xl font-bold text-foreground mb-2"
                         >
                             Welcome
                         </motion.h1>
-                        <p className="text-gray-400">
+                        <p className="text-muted-foreground">
                             Enter your registered roll number to continue
                         </p>
                     </div>
@@ -239,13 +239,13 @@ export default function Verify() {
                     <form onSubmit={handleVerify} className="space-y-6">
                         <div className="space-y-4">
                             <div className="relative">
-                                <Hash className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                                <Hash className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                                 <Input
                                     type="text"
                                     placeholder="Enter your roll number"
                                     value={rollNumber}
                                     onChange={(e) => setRollNumber(e.target.value)}
-                                    className="pl-12 h-14 bg-gray-800/50 border-gray-700 text-white placeholder:text-gray-500 rounded-xl focus:border-cyan-400 focus:ring-cyan-400/20"
+                                    className="pl-12 h-14 bg-background/50 border-input text-foreground placeholder:text-muted-foreground rounded-xl focus:border-primary focus:ring-primary/20"
                                     required
                                 />
                             </div>
@@ -255,10 +255,10 @@ export default function Verify() {
                             <motion.div
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="flex items-center gap-3 p-4 bg-red-500/10 border border-red-500/30 rounded-xl"
+                                className="flex items-center gap-3 p-4 bg-destructive/10 border border-destructive/30 rounded-xl"
                             >
-                                <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
-                                <p className="text-red-400 text-sm">{error}</p>
+                                <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0" />
+                                <p className="text-destructive text-sm">{error}</p>
                             </motion.div>
                         )}
 
@@ -266,10 +266,10 @@ export default function Verify() {
                             <motion.div
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="flex items-center gap-3 p-4 bg-green-500/10 border border-green-500/30 rounded-xl"
+                                className="flex items-center gap-3 p-4 bg-primary/10 border border-primary/30 rounded-xl"
                             >
-                                <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
-                                <p className="text-green-400 text-sm">Verified! Redirecting...</p>
+                                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                                <p className="text-primary text-sm">Verified! Redirecting...</p>
                             </motion.div>
                         )}
 
@@ -289,7 +289,7 @@ export default function Verify() {
                         </NeonButton>
                     </form>
 
-                    <p className="mt-6 text-center text-gray-500 text-sm">
+                    <p className="mt-6 text-center text-muted-foreground text-sm">
                         Only registered participants can access the quiz
                     </p>
                 </div>

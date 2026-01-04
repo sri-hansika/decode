@@ -146,8 +146,8 @@ export default function Quiz() {
 
     if (!student || !quizState || questions.length === 0) {
         return (
-            <div className="min-h-screen bg-[#0D0D0D] flex items-center justify-center">
-                <div className="animate-pulse text-cyan-400">Loading...</div>
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <div className="animate-pulse text-primary">Loading...</div>
             </div>
         );
     }
@@ -156,11 +156,11 @@ export default function Quiz() {
     const levelNames = { 1: 'Easy', 2: 'Medium', 3: 'Hard' };
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D] p-4 md:p-6 overflow-hidden relative">
+        <div className="min-h-screen bg-background p-4 md:p-6 overflow-hidden relative">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl" />
+                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+                <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl" />
             </div>
 
             <div className="relative z-10 max-w-3xl mx-auto">
@@ -171,7 +171,7 @@ export default function Quiz() {
                     className="flex items-center justify-between mb-6"
                 >
                     <div>
-                        <h1 className="text-xl md:text-2xl font-bold text-white">
+                        <h1 className="text-xl md:text-2xl font-bold text-foreground">
                             Level {quizState.currentLevel} - {levelNames[quizState.currentLevel]}
                         </h1>
                     </div>

@@ -47,27 +47,27 @@ export default function WordArrangementQuestion({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl"
+            className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl p-8 border border-border/50 shadow-2xl"
         >
             <div className="mb-6">
-                <span className="text-violet-400 font-semibold text-sm">
+                <span className="text-secondary font-semibold text-sm">
                     Question {questionNumber}
                 </span>
             </div>
 
             <div className="mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                    Arrange the words for <span className="text-violet-400">{abbreviation}</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                    Arrange the words for <span className="text-secondary">{abbreviation}</span>
                 </h2>
-                <p className="text-gray-400 text-sm">
+                <p className="text-muted-foreground text-sm">
                     Select words in the correct order. Some words are distractors.
                 </p>
             </div>
 
             {/* Arranged words area */}
-            <div className="mb-6 min-h-[100px] p-4 bg-gray-800/50 rounded-xl border-2 border-dashed border-gray-700">
+            <div className="mb-6 min-h-[100px] p-4 bg-card/50 rounded-xl border-2 border-dashed border-border">
                 <div className="flex items-center justify-between mb-2">
-                    <span className="text-xs text-gray-500 uppercase">Your Answer</span>
+                    <span className="text-xs text-muted-foreground uppercase">Your Answer</span>
                     {arranged.length > 0 && (
                         <Button
                             variant="ghost"
@@ -85,7 +85,7 @@ export default function WordArrangementQuestion({
                             <motion.p
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="text-gray-500 text-sm italic"
+                                className="text-muted-foreground text-sm italic"
                             >
                                 Select words from below...
                             </motion.p>
@@ -96,7 +96,7 @@ export default function WordArrangementQuestion({
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.8 }}
-                                    className="flex items-center gap-2 bg-violet-600 text-white px-4 py-2 rounded-lg font-medium"
+                                    className="flex items-center gap-2 bg-secondary text-foreground px-4 py-2 rounded-lg font-medium"
                                 >
                                     <span>{word}</span>
                                     <button
@@ -114,7 +114,7 @@ export default function WordArrangementQuestion({
 
             {/* Available words */}
             <div className="space-y-3">
-                <span className="text-xs text-gray-500 uppercase">Available Words</span>
+                <span className="text-xs text-muted-foreground uppercase">Available Words</span>
                 <div className="flex flex-wrap gap-3">
                     <AnimatePresence>
                         {availableWords.map((word, index) => (
@@ -126,7 +126,7 @@ export default function WordArrangementQuestion({
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => handleWordClick(word)}
-                                className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg font-medium border border-gray-600 transition-colors"
+                                className="bg-card hover:bg-accent text-foreground px-4 py-2 rounded-lg font-medium border border-border transition-colors"
                             >
                                 {word}
                             </motion.button>

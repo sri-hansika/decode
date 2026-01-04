@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 
 export default function NeonButton({ children, onClick, disabled, variant = 'cyan', className = '' }) {
     const variants = {
-        cyan: 'from-cyan-500 to-cyan-400 shadow-cyan-500/30 hover:shadow-cyan-500/50',
-        violet: 'from-violet-500 to-purple-400 shadow-violet-500/30 hover:shadow-violet-500/50',
-        pink: 'from-pink-500 to-rose-400 shadow-pink-500/30 hover:shadow-pink-500/50'
+        cyan: 'from-primary to-accent shadow-primary/30 hover:shadow-primary/50 text-primary-foreground',
+        violet: 'from-secondary to-accent shadow-secondary/30 hover:shadow-secondary/50 text-secondary-foreground',
+        pink: 'from-accent to-destructive shadow-accent/30 hover:shadow-accent/50 text-accent-foreground'
     };
 
     return (
@@ -15,7 +15,7 @@ export default function NeonButton({ children, onClick, disabled, variant = 'cya
             whileHover={{ scale: disabled ? 1 : 1.02 }}
             whileTap={{ scale: disabled ? 1 : 0.98 }}
             className={`
-        relative px-8 py-4 rounded-xl font-semibold text-white
+        relative px-8 py-4 rounded-xl font-semibold text-foreground
         bg-gradient-to-r ${variants[variant]}
         shadow-lg transition-all duration-300
         disabled:opacity-50 disabled:cursor-not-allowed

@@ -116,7 +116,7 @@ export default function DetailedResults() {
     const sortedScores = [...scores].sort((a, b) => (b.total_score || 0) - (a.total_score || 0));
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D] p-6">
+        <div className="min-h-screen bg-background p-6">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <motion.div
@@ -125,20 +125,20 @@ export default function DetailedResults() {
                     className="mb-8 flex justify-between items-center"
                 >
                     <div>
-                        <h1 className="text-3xl font-bold text-white mb-2">Detailed Results</h1>
-                        <p className="text-gray-400">Complete breakdown of all quiz attempts</p>
+                        <h1 className="text-3xl font-bold text-foreground mb-2">Detailed Results</h1>
+                        <p className="text-muted-foreground">Complete breakdown of all quiz attempts</p>
                     </div>
                     <div className="flex gap-3">
                         <Button
                             onClick={() => navigate(createPageUrl('Admin'))}
                             variant="outline"
-                            className="border-gray-700 text-gray-300 hover:bg-gray-800"
+                            className="border-border text-gray-300 hover:bg-card"
                         >
                             Back to Dashboard
                         </Button>
                         <Button
                             onClick={exportDetailedCSV}
-                            className="bg-cyan-600 hover:bg-cyan-700 text-white"
+                            className="bg-primary hover:bg-cyan-700 text-foreground"
                         >
                             <Download className="w-4 h-4 mr-2" />
                             Export Detailed CSV
@@ -151,40 +151,40 @@ export default function DetailedResults() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-gray-700/50 overflow-hidden"
+                    className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl border border-border/50 overflow-hidden"
                 >
                     <div className="overflow-x-auto">
                         <Table>
                             <TableHeader>
-                                <TableRow className="border-gray-700 hover:bg-gray-800/50">
-                                    <TableHead className="text-gray-400 sticky left-0 bg-gray-900">Student Info</TableHead>
-                                    <TableHead className="text-center text-cyan-400" colSpan={2}>Level 1 - Easy</TableHead>
-                                    <TableHead className="text-center text-violet-400" colSpan={2}>Level 2 - Medium</TableHead>
-                                    <TableHead className="text-center text-pink-400" colSpan={2}>Level 3 - Hard</TableHead>
-                                    <TableHead className="text-center text-amber-400" colSpan={2}>Total</TableHead>
+                                <TableRow className="border-border hover:bg-card/50">
+                                    <TableHead className="text-muted-foreground sticky left-0 bg-card">Student Info</TableHead>
+                                    <TableHead className="text-center text-primary" colSpan={2}>Level 1 - Easy</TableHead>
+                                    <TableHead className="text-center text-secondary" colSpan={2}>Level 2 - Medium</TableHead>
+                                    <TableHead className="text-center text-accent" colSpan={2}>Level 3 - Hard</TableHead>
+                                    <TableHead className="text-center text-accent" colSpan={2}>Total</TableHead>
                                 </TableRow>
-                                <TableRow className="border-gray-700 hover:bg-gray-800/50">
-                                    <TableHead className="text-gray-400 sticky left-0 bg-gray-900">Name / Roll</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Score</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Time</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Score</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Time</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Score</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Time</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Score</TableHead>
-                                    <TableHead className="text-gray-400 text-center">Time</TableHead>
+                                <TableRow className="border-border hover:bg-card/50">
+                                    <TableHead className="text-muted-foreground sticky left-0 bg-card">Name / Roll</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Score</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Time</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Score</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Time</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Score</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Time</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Score</TableHead>
+                                    <TableHead className="text-muted-foreground text-center">Time</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {isLoading ? (
                                     <TableRow>
-                                        <TableCell colSpan={9} className="text-center py-8 text-gray-400">
+                                        <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
                                             Loading results...
                                         </TableCell>
                                     </TableRow>
                                 ) : sortedScores.length === 0 ? (
                                     <TableRow>
-                                        <TableCell colSpan={9} className="text-center py-8 text-gray-400">
+                                        <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
                                             No results found
                                         </TableCell>
                                     </TableRow>
@@ -192,43 +192,43 @@ export default function DetailedResults() {
                                     sortedScores.map((score, index) => (
                                         <TableRow
                                             key={score.id}
-                                            className="border-gray-700/50 hover:bg-gray-800/30"
+                                            className="border-border/50 hover:bg-card/30"
                                         >
-                                            <TableCell className="sticky left-0 bg-gray-900">
+                                            <TableCell className="sticky left-0 bg-card">
                                                 <div>
-                                                    <p className="text-white font-medium">{score.student_name}</p>
-                                                    <p className="text-gray-500 text-sm">{score.student_roll}</p>
-                                                    <p className="text-gray-600 text-xs">{score.student_phone}</p>
+                                                    <p className="text-foreground font-medium">{score.student_name}</p>
+                                                    <p className="text-muted-foreground text-sm">{score.student_roll}</p>
+                                                    <p className="text-muted-foreground text-xs">{score.student_phone}</p>
                                                 </div>
                                             </TableCell>
-                                            <TableCell className="text-center text-cyan-400 font-semibold">
+                                            <TableCell className="text-center text-primary font-semibold">
                                                 {score.level1_score || 0}/10
                                             </TableCell>
-                                            <TableCell className="text-center text-gray-400 text-sm">
+                                            <TableCell className="text-center text-muted-foreground text-sm">
                                                 {formatTime(score.level1_time)}
                                             </TableCell>
-                                            <TableCell className="text-center text-violet-400 font-semibold">
+                                            <TableCell className="text-center text-secondary font-semibold">
                                                 {score.level2_score !== null && score.level2_score !== undefined ? `${score.level2_score}/20` : '-'}
                                             </TableCell>
-                                            <TableCell className="text-center text-gray-400 text-sm">
+                                            <TableCell className="text-center text-muted-foreground text-sm">
                                                 {score.level2_time ? formatTime(score.level2_time) : '-'}
                                             </TableCell>
-                                            <TableCell className="text-center text-pink-400 font-semibold">
+                                            <TableCell className="text-center text-accent font-semibold">
                                                 {score.level3_score !== null && score.level3_score !== undefined ? `${score.level3_score}/30` : '-'}
                                             </TableCell>
-                                            <TableCell className="text-center text-gray-400 text-sm">
+                                            <TableCell className="text-center text-muted-foreground text-sm">
                                                 {score.level3_time ? formatTime(score.level3_time) : '-'}
                                             </TableCell>
                                             <TableCell className="text-center">
-                                                <span className={`font-bold ${(score.total_score || 0) >= 50 ? 'text-amber-400' :
-                                                    (score.total_score || 0) >= 40 ? 'text-cyan-400' :
-                                                        (score.total_score || 0) >= 30 ? 'text-violet-400' :
-                                                            'text-gray-400'
+                                                <span className={`font-bold ${(score.total_score || 0) >= 50 ? 'text-accent' :
+                                                    (score.total_score || 0) >= 40 ? 'text-primary' :
+                                                        (score.total_score || 0) >= 30 ? 'text-secondary' :
+                                                            'text-muted-foreground'
                                                     }`}>
                                                     {score.total_score || 0}/60
                                                 </span>
                                             </TableCell>
-                                            <TableCell className="text-center text-gray-400 text-sm">
+                                            <TableCell className="text-center text-muted-foreground text-sm">
                                                 {formatTime(score.total_time)}
                                             </TableCell>
                                         </TableRow>
@@ -244,13 +244,13 @@ export default function DetailedResults() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
-                    className="mt-6 bg-gradient-to-r from-cyan-500/10 to-violet-500/10 rounded-xl p-4 border border-cyan-500/20"
+                    className="mt-6 bg-gradient-to-r from-primary/10 to-violet-500/10 rounded-xl p-4 border border-cyan-500/20"
                 >
                     <div className="flex items-start gap-3">
-                        <FileSpreadsheet className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                        <FileSpreadsheet className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                         <div>
-                            <p className="text-white font-medium mb-1">Export Format</p>
-                            <p className="text-gray-400 text-sm">
+                            <p className="text-foreground font-medium mb-1">Export Format</p>
+                            <p className="text-muted-foreground text-sm">
                                 The exported CSV includes all student details, individual level scores, times, and totals.
                                 This format can be directly imported into Google Sheets for further analysis.
                             </p>

@@ -59,7 +59,7 @@ export default function Timer({ duration, onTimeUp, isActive }) {
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
                         <motion.span
-                            className={`text-2xl font-bold ${isCritical ? 'text-red-500' : isLow ? 'text-amber-500' : 'text-cyan-400'
+                            className={`text-2xl font-bold ${isCritical ? 'text-red-500' : isLow ? 'text-amber-500' : 'text-primary'
                                 }`}
                             animate={isCritical ? { scale: [1, 1.1, 1] } : {}}
                             transition={{ repeat: Infinity, duration: 0.5 }}
@@ -68,7 +68,7 @@ export default function Timer({ duration, onTimeUp, isActive }) {
                         </motion.span>
                     </div>
                 </div>
-                <div className="text-sm text-gray-400">
+                <div className="text-sm text-muted-foreground">
                     <p>seconds</p>
                     <p>remaining</p>
                 </div>

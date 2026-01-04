@@ -76,19 +76,19 @@ export default function Instructions() {
             icon: Layers,
             title: '3 Levels',
             description: 'Easy → Medium → Hard',
-            color: 'text-cyan-400'
+            color: 'text-primary'
         },
         {
             icon: Clock,
             title: 'Question Count',
             description: 'L1: 10 | L2: 20 | L3: 30',
-            color: 'text-violet-400'
+            color: 'text-secondary'
         },
         {
             icon: Award,
             title: 'Total Score',
             description: '60 Questions | 60 Marks',
-            color: 'text-pink-400'
+            color: 'text-accent'
         }
     ];
 
@@ -106,11 +106,11 @@ export default function Instructions() {
     if (!student) return null;
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D] flex flex-col items-center justify-center p-6 overflow-hidden relative">
+        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 overflow-hidden relative">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-violet-500/10 rounded-full blur-3xl" />
-                <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl" />
+                <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
+                <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
             </div>
 
             <motion.div
@@ -123,16 +123,16 @@ export default function Instructions() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-gradient-to-r from-cyan-500/20 to-violet-500/20 rounded-2xl p-6 mb-6 border border-gray-700/50"
+                    className="bg-card rounded-2xl p-6 mb-6 border border-border"
                 >
-                    <p className="text-gray-400 text-sm">Welcome,</p>
-                    <h2 className="text-2xl font-bold text-white">{student.name}</h2>
-                    <p className="text-gray-500 text-sm mt-1">{student.roll_number}</p>
+                    <p className="text-muted-foreground text-sm">Welcome,</p>
+                    <h2 className="text-2xl font-bold text-foreground">{student.name}</h2>
+                    <p className="text-muted-foreground text-sm mt-1">{student.roll_number}</p>
                 </motion.div>
 
                 {/* Instructions card */}
-                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
-                    <h1 className="text-3xl font-bold text-white mb-6 text-center">
+                <div className="bg-card backdrop-blur-xl rounded-3xl p-8 border border-border shadow-2xl">
+                    <h1 className="text-3xl font-bold text-foreground mb-6 text-center">
                         Quiz Instructions
                     </h1>
 
@@ -144,11 +144,11 @@ export default function Instructions() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 + i * 0.1 }}
-                                className="bg-gray-800/50 rounded-xl p-4 text-center border border-gray-700/50"
+                                className="bg-muted/50 rounded-xl p-4 text-center border border-border"
                             >
                                 <item.icon className={`w-8 h-8 mx-auto mb-2 ${item.color}`} />
-                                <h3 className="text-white font-semibold text-sm">{item.title}</h3>
-                                <p className="text-gray-500 text-xs mt-1">{item.description}</p>
+                                <h3 className="text-foreground font-semibold text-sm">{item.title}</h3>
+                                <p className="text-muted-foreground text-xs mt-1">{item.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -156,8 +156,8 @@ export default function Instructions() {
                     {/* Rules */}
                     <div className="mb-8">
                         <div className="flex items-center gap-2 mb-4">
-                            <AlertTriangle className="w-5 h-5 text-amber-400" />
-                            <h3 className="text-lg font-semibold text-white">Important Rules</h3>
+                            <AlertTriangle className="w-5 h-5 text-accent" />
+                            <h3 className="text-lg font-semibold text-foreground">Important Rules</h3>
                         </div>
                         <div className="space-y-3">
                             {rules.map((rule, i) => (
@@ -168,8 +168,8 @@ export default function Instructions() {
                                     transition={{ delay: 0.5 + i * 0.1 }}
                                     className="flex items-start gap-3"
                                 >
-                                    <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
-                                    <p className="text-gray-400 text-sm">{rule}</p>
+                                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                    <p className="text-muted-foreground text-sm">{rule}</p>
                                 </motion.div>
                             ))}
                         </div>

@@ -85,14 +85,14 @@ export default function Results() {
                 angle: 60,
                 spread: 55,
                 origin: { x: 0 },
-                colors: ['#00F0FF', '#8B5CF6', '#EC4899']
+                colors: ['#d00000', '#f48c06', '#ffba08']
             });
             confetti({
                 particleCount: 2,
                 angle: 120,
                 spread: 55,
                 origin: { x: 1 },
-                colors: ['#00F0FF', '#8B5CF6', '#EC4899']
+                colors: ['#d00000', '#f48c06', '#ffba08']
             });
 
             if (Date.now() < end) {
@@ -135,12 +135,12 @@ export default function Results() {
     const levelNames = ['Easy', 'Medium', 'Hard'];
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D] flex flex-col items-center justify-center p-6 overflow-hidden relative">
+        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 overflow-hidden relative">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-500" />
-                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-500" />
+                <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse delay-1000" />
             </div>
 
             <motion.div
@@ -148,15 +148,15 @@ export default function Results() {
                 animate={{ opacity: 1, y: 0 }}
                 className="relative z-10 w-full max-w-2xl"
             >
-                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
+                <div className="bg-card backdrop-blur-xl rounded-3xl p-8 border border-border shadow-2xl">
                     {/* Already Attempted Warning */}
                     {quizState.alreadyAttempted && (
                         <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mb-6 bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 text-center"
+                            className="mb-6 bg-destructive/10 border border-destructive/30 rounded-xl p-4 text-center"
                         >
-                            <p className="text-amber-400 font-semibold">
+                            <p className="text-destructive font-semibold">
                                 You have already attempted the quiz. Reattempt is not allowed.
                             </p>
                         </motion.div>
@@ -171,25 +171,25 @@ export default function Results() {
                     >
                         {isEliminated ? (
                             <>
-                                <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-full flex items-center justify-center border border-red-500/30">
-                                    <XCircle className="w-12 h-12 text-red-400" />
+                                <div className="w-24 h-24 mx-auto mb-4 bg-destructive/20 rounded-full flex items-center justify-center border border-destructive/30">
+                                    <XCircle className="w-12 h-12 text-destructive" />
                                 </div>
-                                <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
                                     Not Qualified
                                 </h1>
-                                <p className="text-gray-400">
+                                <p className="text-muted-foreground">
                                     {student.name}, you did not meet the qualification criteria.
                                 </p>
                             </>
                         ) : (
                             <>
-                                <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-cyan-500/20 to-violet-500/20 rounded-full flex items-center justify-center border border-cyan-500/30">
-                                    <Trophy className="w-12 h-12 text-cyan-400" />
+                                <div className="w-24 h-24 mx-auto mb-4 bg-primary/20 rounded-full flex items-center justify-center border border-primary/30">
+                                    <Trophy className="w-12 h-12 text-primary" />
                                 </div>
-                                <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+                                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
                                     Quiz Complete!
                                 </h1>
-                                <p className="text-gray-400">
+                                <p className="text-muted-foreground">
                                     Congratulations, {student.name}!
                                 </p>
                             </>
@@ -203,10 +203,10 @@ export default function Results() {
                         transition={{ delay: 0.3 }}
                         className="text-center mb-8"
                     >
-                        <div className="text-6xl font-black text-cyan-400 mb-2">
+                        <div className="text-6xl font-black text-primary mb-2">
                             {totalScore} / {eliminationLevel === 1 ? 10 : eliminationLevel === 2 ? 30 : 60}
                         </div>
-                        <p className="text-lg text-gray-400">
+                        <p className="text-lg text-muted-foreground">
                             {eliminationLevel === 1 ? 'Level 1 Score' : eliminationLevel === 2 ? 'Total Score (L1+L2)' : 'Total Score'}
                         </p>
                     </motion.div>
@@ -218,15 +218,15 @@ export default function Results() {
                         transition={{ delay: 0.5 }}
                         className="grid grid-cols-2 gap-4 mb-8"
                     >
-                        <div className="bg-gradient-to-br from-cyan-500/20 to-cyan-600/10 rounded-2xl p-6 border border-cyan-500/30 text-center">
-                            <Award className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
-                            <p className="text-4xl font-bold text-white">{totalScore}/{eliminationLevel === 1 ? 10 : eliminationLevel === 2 ? 30 : 60}</p>
-                            <p className="text-gray-400 text-sm">{eliminationLevel === 1 ? 'Level 1 Score' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Score'}</p>
+                        <div className="bg-primary/20 rounded-2xl p-6 border border-primary/30 text-center">
+                            <Award className="w-8 h-8 text-primary mx-auto mb-2" />
+                            <p className="text-4xl font-bold text-foreground">{totalScore}/{eliminationLevel === 1 ? 10 : eliminationLevel === 2 ? 30 : 60}</p>
+                            <p className="text-muted-foreground text-sm">{eliminationLevel === 1 ? 'Level 1 Score' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Score'}</p>
                         </div>
-                        <div className="bg-gradient-to-br from-violet-500/20 to-violet-600/10 rounded-2xl p-6 border border-violet-500/30 text-center">
-                            <Clock className="w-8 h-8 text-violet-400 mx-auto mb-2" />
-                            <p className="text-4xl font-bold text-white">{formatTime(totalTime)}</p>
-                            <p className="text-gray-400 text-sm">{eliminationLevel === 1 ? 'Level 1 Time' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Time'}</p>
+                        <div className="bg-secondary/20 rounded-2xl p-6 border border-secondary/30 text-center">
+                            <Clock className="w-8 h-8 text-secondary mx-auto mb-2" />
+                            <p className="text-4xl font-bold text-foreground">{formatTime(totalTime)}</p>
+                            <p className="text-muted-foreground text-sm">{eliminationLevel === 1 ? 'Level 1 Time' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Time'}</p>
                         </div>
                     </motion.div>
 
@@ -236,21 +236,21 @@ export default function Results() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7 }}
-                            className="mb-8 bg-red-500/10 border border-red-500/30 rounded-xl p-6"
+                            className="mb-8 bg-destructive/10 border border-destructive/30 rounded-xl p-6"
                         >
                             <div className="flex items-start gap-3">
-                                <XCircle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
+                                <XCircle className="w-6 h-6 text-destructive flex-shrink-0 mt-0.5" />
                                 <div>
-                                    <h3 className="text-lg font-semibold text-red-400 mb-2">
+                                    <h3 className="text-lg font-semibold text-destructive mb-2">
                                         Qualification Not Met
                                     </h3>
                                     {eliminationLevel === 1 ? (
-                                        <p className="text-gray-400 text-sm">
+                                        <p className="text-muted-foreground text-sm">
                                             You needed at least 5 marks in Level 1 to proceed to Level 2.
                                             You scored {quizState.levelScores[0]}/10 in Level 1.
                                         </p>
                                     ) : (
-                                        <p className="text-gray-400 text-sm">
+                                        <p className="text-muted-foreground text-sm">
                                             You needed at least 18 marks in Level 2 to proceed to Level 3.
                                             You scored {quizState.levelScores[1]}/20 in Level 2.
                                         </p>
@@ -265,30 +265,30 @@ export default function Results() {
                             transition={{ delay: 0.7 }}
                             className="mb-8"
                         >
-                            <h3 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                                <Star className="w-5 h-5 text-amber-400" />
+                            <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                                <Star className="w-5 h-5 text-secondary" />
                                 Level Breakdown
                             </h3>
                             <div className="space-y-3">
                                 {quizState.levelScores.map((score, i) => (
                                     <div
                                         key={i}
-                                        className="flex items-center justify-between bg-gray-800/50 rounded-xl p-4 border border-gray-700/50"
+                                        className="flex items-center justify-between bg-muted/50 rounded-xl p-4 border border-border"
                                     >
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${i === 0 ? 'bg-cyan-500/20 text-cyan-400' :
-                                                i === 1 ? 'bg-violet-500/20 text-violet-400' :
-                                                    'bg-pink-500/20 text-pink-400'
+                                            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${i === 0 ? 'bg-primary/20 text-primary' :
+                                                i === 1 ? 'bg-secondary/20 text-secondary' :
+                                                    'bg-accent/20 text-accent'
                                                 }`}>
                                                 {i + 1}
                                             </div>
                                             <div>
-                                                <p className="text-white font-medium">Level {i + 1} - {levelNames[i]}</p>
+                                                <p className="text-foreground font-medium">Level {i + 1} - {levelNames[i]}</p>
                                             </div>
                                         </div>
                                         <div className="text-right">
-                                            <p className="text-white font-bold">{score}/{i === 0 ? 10 : i === 1 ? 20 : 30}</p>
-                                            <p className="text-gray-500 text-sm">{formatTime(quizState.levelTimes[i])}</p>
+                                            <p className="text-foreground font-bold">{score}/{i === 0 ? 10 : i === 1 ? 20 : 30}</p>
+                                            <p className="text-muted-foreground text-sm">{formatTime(quizState.levelTimes[i])}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -327,7 +327,7 @@ export default function Results() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.1 }}
-                    className="text-center text-gray-500 text-sm mt-6"
+                    className="text-center text-muted-foreground text-sm mt-6"
                 >
                     {quizState.alreadyAttempted ? (
                         'Your previous quiz results are displayed above. Reattempt is not allowed.'

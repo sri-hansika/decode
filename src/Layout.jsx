@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 
 export default function Layout({ children, currentPageName }) {
     return (
-        <div className="flex flex-col min-h-screen bg-[#0D0D0D]">
+        <div className="flex flex-col min-h-screen bg-background">
             {/* Fixed Header - Hidden on Home page */}
             {currentPageName !== 'Home' && (
-                <header className="fixed top-0 left-0 right-0 z-50 bg-[#0D0D0D]/95 backdrop-blur-md border-b border-gray-800/50">
+                <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-16 sm:h-20">
                             {/* Left side - Logo + EPROZYNE */}
@@ -31,7 +31,7 @@ export default function Layout({ children, currentPageName }) {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.2, duration: 0.5 }}
                                 >
-                                    <h1 className="text-base sm:text-xl md:text-2xl font-black bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent tracking-tight">
+                                    <h1 className="text-base sm:text-xl md:text-2xl font-black bg-gradient-to-r from-secondary via-accent to-accent bg-clip-text text-transparent tracking-tight">
                                         EPROZYNE
                                     </h1>
                                 </motion.div>
@@ -44,11 +44,11 @@ export default function Layout({ children, currentPageName }) {
                                 transition={{ delay: 0.3, duration: 0.5 }}
                                 className="relative"
                             >
-                                <h1 className="text-base sm:text-xl md:text-2xl font-black bg-gradient-to-r from-cyan-400 via-cyan-300 to-cyan-500 bg-clip-text text-transparent tracking-tight whitespace-nowrap">
+                                <h1 className="text-base sm:text-xl md:text-2xl font-black bg-gradient-to-r from-primary via-destructive to-primary bg-clip-text text-transparent tracking-tight whitespace-nowrap">
                                     DECODE DESK
                                 </h1>
                                 <motion.div
-                                    className="absolute -inset-2 bg-cyan-400/10 rounded blur-lg -z-10"
+                                    className="absolute -inset-2 bg-primary/10 rounded blur-lg -z-10"
                                     animate={{ opacity: [0.3, 0.5, 0.3] }}
                                     transition={{ repeat: Infinity, duration: 2 }}
                                 />
@@ -64,21 +64,21 @@ export default function Layout({ children, currentPageName }) {
             </main>
 
             {/* Static Footer - appears at bottom of content naturally */}
-            <footer className="bg-[#0D0D0D] border-t border-gray-800/50 mt-auto">
+            <footer className="bg-background border-t border-border/50 mt-auto">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-center py-4 sm:py-6">
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.5 }}
-                            className="text-gray-400 text-xs sm:text-sm text-center leading-relaxed"
+                            className="text-muted-foreground text-xs sm:text-sm text-center leading-relaxed"
                         >
                             Developed by{' '}
-                            <span className="text-cyan-400 font-semibold">Sri Hansika Vanum</span>
-                            {' '}<span className="text-gray-600">|</span>{' '}
-                            <span className="text-violet-400">CSE Department</span>
-                            {' '}<span className="text-gray-600">|</span>{' '}
-                            <span className="text-pink-400">Strides 2k26</span>
+                            <span className="text-primary font-semibold">Sri Hansika Vanum</span>
+                            {' '}<span className="text-muted-foreground">|</span>{' '}
+                            <span className="text-secondary">CSE Department</span>
+                            {' '}<span className="text-muted-foreground">|</span>{' '}
+                            <span className="text-accent">Strides 2k26</span>
                         </motion.p>
                     </div>
                 </div>

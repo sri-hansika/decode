@@ -176,11 +176,11 @@ export default function Summary() {
     if (!student || !quizState) return null;
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D] flex flex-col items-center justify-center p-6 overflow-hidden relative">
+        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6 overflow-hidden relative">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl animate-pulse delay-500" />
+                <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-500" />
             </div>
 
             <motion.div
@@ -189,7 +189,7 @@ export default function Summary() {
                 transition={{ duration: 0.5 }}
                 className="relative z-10 w-full max-w-lg"
             >
-                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl p-8 border border-gray-700/50 shadow-2xl text-center">
+                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl rounded-3xl p-8 border border-border/50 shadow-2xl text-center">
                     {/* Level badge */}
                     <motion.div
                         initial={{ y: -20, opacity: 0 }}
@@ -216,10 +216,10 @@ export default function Summary() {
                                 transition={{ delay: 0.5 }}
                                 className="mb-2"
                             >
-                                <span className="text-5xl font-bold text-cyan-400">{score}</span>
-                                <span className="text-3xl text-gray-500"> / {level === 1 ? 10 : level === 2 ? 20 : 30}</span>
+                                <span className="text-5xl font-bold text-primary">{score}</span>
+                                <span className="text-3xl text-muted-foreground"> / {level === 1 ? 10 : level === 2 ? 20 : 30}</span>
                             </motion.div>
-                            <p className="text-gray-400 text-sm">Level {level} Score</p>
+                            <p className="text-muted-foreground text-sm">Level {level} Score</p>
                         </div>
                     </motion.div>
 
@@ -230,10 +230,10 @@ export default function Summary() {
                         transition={{ delay: 1.2 }}
                         className="mb-8"
                     >
-                        <div className="bg-gray-800/50 rounded-xl p-4 border border-gray-700/50">
-                            <Clock className="w-6 h-6 text-cyan-400 mx-auto mb-2" />
-                            <p className="text-xl font-bold text-white">{formatTime(time)}</p>
-                            <p className="text-gray-500 text-sm">Time Taken</p>
+                        <div className="bg-card/50 rounded-xl p-4 border border-border/50">
+                            <Clock className="w-6 h-6 text-primary mx-auto mb-2" />
+                            <p className="text-xl font-bold text-foreground">{formatTime(time)}</p>
+                            <p className="text-muted-foreground text-sm">Time Taken</p>
                         </div>
                     </motion.div>
 
@@ -247,7 +247,7 @@ export default function Summary() {
                         {[1, 2, 3].map((l) => (
                             <div
                                 key={l}
-                                className={`flex items-center gap-2 ${l <= level ? 'text-cyan-400' : 'text-gray-600'
+                                className={`flex items-center gap-2 ${l <= level ? 'text-primary' : 'text-muted-foreground'
                                     }`}
                             >
                                 {l < level ? (
@@ -259,7 +259,7 @@ export default function Summary() {
                                 )}
                                 <span className="text-sm font-medium">L{l}</span>
                                 {l < 3 && (
-                                    <div className={`w-8 h-0.5 ${l < level ? 'bg-cyan-400' : 'bg-gray-700'}`} />
+                                    <div className={`w-8 h-0.5 ${l < level ? 'bg-primary' : 'bg-gray-700'}`} />
                                 )}
                             </div>
                         ))}
@@ -276,7 +276,7 @@ export default function Summary() {
                             <AlertCircle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
                             <div>
                                 <p className="text-red-400 font-semibold">Not Qualified</p>
-                                <p className="text-gray-400 text-sm mt-1">
+                                <p className="text-muted-foreground text-sm mt-1">
                                     You need at least 5 marks to proceed to Level 2.
                                 </p>
                             </div>
@@ -293,7 +293,7 @@ export default function Summary() {
                             <AlertCircle className="w-6 h-6 text-red-400 flex-shrink-0 mt-0.5" />
                             <div>
                                 <p className="text-red-400 font-semibold">Not Qualified</p>
-                                <p className="text-gray-400 text-sm mt-1">
+                                <p className="text-muted-foreground text-sm mt-1">
                                     You need at least 18 marks to proceed to Level 3.
                                 </p>
                             </div>
