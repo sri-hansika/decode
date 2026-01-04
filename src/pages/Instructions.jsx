@@ -40,8 +40,8 @@ export default function Instructions() {
 
                     const quizState = {
                         currentLevel: 1,
-                        levelScores: answers.levelScores || [],
-                        levelTimes: answers.levelTimes || [],
+                        levelScores: answers.breakdown?.levelScores || answers.levelScores || [],
+                        levelTimes: answers.breakdown?.levelTimes || answers.levelTimes || [],
                         eliminated: answers.status === 'ELIMINATED_AFTER_LEVEL_1' || answers.status === 'ELIMINATED_AFTER_LEVEL_2',
                         eliminationLevel: answers.status === 'ELIMINATED_AFTER_LEVEL_1' ? 1 :
                             answers.status === 'ELIMINATED_AFTER_LEVEL_2' ? 2 : null,

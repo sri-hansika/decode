@@ -154,10 +154,10 @@ export default function Results() {
                         <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="mb-6 bg-destructive/10 border border-destructive/30 rounded-xl p-4 text-center"
+                            className="mb-6 bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 text-center"
                         >
-                            <p className="text-destructive font-semibold">
-                                You have already attempted the quiz. Reattempt is not allowed.
+                            <p className="text-yellow-500 font-semibold">
+                                You have already attempted the quiz. Showing your previous results.
                             </p>
                         </motion.div>
                     )}
@@ -169,7 +169,19 @@ export default function Results() {
                         transition={{ type: 'spring', stiffness: 200 }}
                         className="text-center mb-8"
                     >
-                        {isEliminated ? (
+                        {quizState.alreadyAttempted ? (
+                            <>
+                                <div className="w-24 h-24 mx-auto mb-4 bg-yellow-500/20 rounded-full flex items-center justify-center border border-yellow-500/30">
+                                    <Trophy className="w-12 h-12 text-yellow-500" />
+                                </div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+                                    Previous Results
+                                </h1>
+                                <p className="text-muted-foreground">
+                                    Welcome back, {student.name}. Here is how you performed.
+                                </p>
+                            </>
+                        ) : isEliminated ? (
                             <>
                                 <div className="w-24 h-24 mx-auto mb-4 bg-destructive/20 rounded-full flex items-center justify-center border border-destructive/30">
                                     <XCircle className="w-12 h-12 text-destructive" />
@@ -330,7 +342,7 @@ export default function Results() {
                     className="text-center text-muted-foreground text-sm mt-6"
                 >
                     {quizState.alreadyAttempted ? (
-                        'Your previous quiz results are displayed above. Reattempt is not allowed.'
+                        'Your past quiz results are displayed above. Reattempt is not allowed.'
                     ) : isEliminated ? (
                         'Your results have been saved. Better luck next time!'
                     ) : (
