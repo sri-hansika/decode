@@ -95,7 +95,8 @@ export default function Summary() {
                         level1_score: score,
                         level1_time: time,
                         status: 'ELIMINATED_AFTER_LEVEL_1',
-                        breakdown: { levelScores: [score], levelTimes: [time] }
+                        breakdown: { levelScores: [score], levelTimes: [time] },
+                        user_responses: quizState.user_responses // Include detailed answers
                     }
                 });
             } catch (err) {
@@ -136,7 +137,8 @@ export default function Summary() {
                         breakdown: {
                             levelScores: [...quizState.levelScores, score],
                             levelTimes: [...quizState.levelTimes, time]
-                        }
+                        },
+                        user_responses: quizState.user_responses // Include detailed answers
                     }
                 });
             } catch (err) {

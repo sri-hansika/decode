@@ -37,6 +37,8 @@ export default function Results() {
             }
 
             // Check if student was eliminated after Level 1 or Level 2
+            // Note: Eliminations are handled in Summary.jsx, but if they land here without saving there (edge case), handle it?
+            // Summary.jsx handles eliminations and marks 'eliminated' in state.
             if (stateData.eliminated && (stateData.eliminationLevel === 1 || stateData.eliminationLevel === 2)) {
                 setSaved(true);
                 return; // Already saved in Summary page
@@ -46,6 +48,24 @@ export default function Results() {
             const totalTime = stateData.levelTimes.reduce((a, b) => a + b, 0);
 
             try {
+                // Double check if record already exists to prevent duplicate on refresh
+                const { data: existingAttempts } = await supabase
+                    .from('quiz_attempts')
+                    .select('id')
+                    .eq('user_id', studentData.id)
+                    .eq('level', 3); // Check for level 3 completion record
+
+                if (existingAttempts && existingAttempts.length > 0) {
+                    console.log("Result already exists in DB, skipping save.");
+                    setSaved(true);
+
+                    // Fix local state if it was out of sync
+                    const newState = { ...stateData, alreadyAttempted: true };
+                    localStorage.setItem('quiz_state', JSON.stringify(newState));
+                    setQuizState(newState);
+                    return;
+                }
+
                 await supabase.from('quiz_attempts').insert({
                     user_id: studentData.id,
                     level: 3, // Completed all levels
@@ -62,9 +82,16 @@ export default function Results() {
                         breakdown: {
                             levelScores: stateData.levelScores,
                             levelTimes: stateData.levelTimes
-                        }
+                        },
+                        user_responses: stateData.user_responses // Include detailed answers
                     }
                 });
+
+                // Mark as attempted in local storage so refresh doesn't trigger this again
+                const newState = { ...stateData, alreadyAttempted: true };
+                localStorage.setItem('quiz_state', JSON.stringify(newState));
+                setQuizState(newState);
+
                 setSaved(true);
             } catch (err) {
                 console.error('Error saving final results:', err);

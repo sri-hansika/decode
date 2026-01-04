@@ -111,19 +111,43 @@ export default function Quiz() {
             finalAnswers[currentQuestion] = selectedAnswer;
 
             let score = 0;
+            const levelResponses = [];
+
             finalAnswers.forEach((ans, idx) => {
-                if (checkAnswer(ans, questions[idx], quizState.currentLevel)) {
+                const q = questions[idx];
+                const isCorrect = checkAnswer(ans, q, quizState.currentLevel);
+                if (isCorrect) {
                     score++;
                 }
+
+                // Construct detailed response for inspection
+                let correctAnswerText = '';
+                if (quizState.currentLevel === 1) correctAnswerText = q.fullForm;
+                else if (quizState.currentLevel === 2) correctAnswerText = q.words.join(' ');
+                else correctAnswerText = q.options[q.answer];
+
+                levelResponses.push({
+                    question: q.question || q.abbreviation || "Question", // Fallback for diff types
+                    answer: ans,
+                    isCorrect: isCorrect,
+                    correctAnswer: correctAnswerText
+                });
             });
 
             const timeTaken = Math.round((Date.now() - levelStartTime) / 1000);
 
-            // Update quiz state
+            // Update quiz state with score AND detailed responses
+            // Initialize user_responses object if it doesn't exist
+            const existingResponses = quizState.user_responses || {};
+
             const newState = {
                 ...quizState,
                 levelScores: [...quizState.levelScores, score],
-                levelTimes: [...quizState.levelTimes, timeTaken]
+                levelTimes: [...quizState.levelTimes, timeTaken],
+                user_responses: {
+                    ...existingResponses,
+                    [`level_${quizState.currentLevel}`]: levelResponses
+                }
             };
             localStorage.setItem('quiz_state', JSON.stringify(newState));
 

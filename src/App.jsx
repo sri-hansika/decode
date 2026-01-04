@@ -13,6 +13,7 @@ import Results from './pages/Results';
 import DetailedResults from './pages/DetailedResults';
 import Admin from './pages/Admin';
 import UserLogins from './pages/UserLogins';
+import AdminDashboard from './pages/AdminDashboard';
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ export default function App() {
 
           <Route path="/admin" element={<Layout currentPageName="Admin"><Admin /></Layout>} />
           <Route path="/admin/logins" element={<Layout currentPageName="UserLogins"><UserLogins /></Layout>} />
+          <Route path="/admin/dashboard" element={<Layout currentPageName="AdminDashboard"><AdminDashboard /></Layout>} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
