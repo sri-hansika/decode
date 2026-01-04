@@ -244,7 +244,7 @@ export default function Verify() {
                                     type="text"
                                     placeholder="Enter your roll number"
                                     value={rollNumber}
-                                    onChange={(e) => setRollNumber(e.target.value)}
+                                    onChange={(e) => setRollNumber(e.target.value.toUpperCase())}
                                     className="pl-12 h-14 bg-background/50 border-input text-foreground placeholder:text-muted-foreground rounded-xl focus:border-primary focus:ring-primary/20"
                                     required
                                 />
