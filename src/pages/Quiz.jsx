@@ -127,26 +127,7 @@ export default function Quiz() {
         saveAndProceed(currentQuestion === totalQuestions - 1);
     }, [saveAndProceed, currentQuestion, quizState]);
 
-    const handleSkip = () => {
-        if (isTransitioning) return;
 
-        // Treat as unanswered/incorrect
-        const newAnswers = [...answers];
-        newAnswers[currentQuestion] = null; // Explicitly null for skipped
-        setAnswers(newAnswers);
-
-        const totalQuestions = quizState.currentLevel === 1 ? 10 : quizState.currentLevel === 2 ? 20 : 30;
-        if (currentQuestion < totalQuestions - 1) {
-            setIsTransitioning(true);
-            setCurrentQuestion(prev => prev + 1);
-            setSelectedAnswer(null);
-            setTimerKey(prev => prev + 1);
-            setTimeout(() => setIsTransitioning(false), 100);
-        } else {
-            // Level complete even if skipped last question
-            saveAndProceed(true);
-        }
-    };
 
     const handleNext = () => {
         const totalQuestions = quizState.currentLevel === 1 ? 10 : quizState.currentLevel === 2 ? 20 : 30;
@@ -240,14 +221,7 @@ export default function Quiz() {
                     transition={{ delay: 0.4 }}
                     className="mt-8 flex justify-end gap-4"
                 >
-                    <NeonButton
-                        onClick={handleSkip}
-                        disabled={isTransitioning}
-                        variant="pink" // Distinct color for Skip
-                        className="bg-transparent border-pink-500/50 hover:bg-pink-500/10"
-                    >
-                        Skip
-                    </NeonButton>
+
                     <NeonButton
                         onClick={handleNext}
                         disabled={selectedAnswer === null || isTransitioning}

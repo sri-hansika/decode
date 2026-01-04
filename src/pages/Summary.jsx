@@ -36,79 +36,79 @@ export default function Summary() {
     };
 
     const handleNext = async () => {
-        // Check Level 1 cutoff - DISABLED FOR DEBUGGING
-        // if (level === 1 && score < 5) {
-        //     // Student is eliminated - save final results and show elimination screen
-        //     try {
-        //         await supabase.from('quiz_attempts').insert({
-        //             user_id: student.id,
-        //             level: 1,
-        //             score: score,
-        //             time_taken_seconds: time,
-        //             answers: {
-        //                 level1_score: score,
-        //                 level1_time: time,
-        //                 status: 'ELIMINATED_AFTER_LEVEL_1',
-        //                 breakdown: { levelScores: [score], levelTimes: [time] }
-        //             }
-        //         });
-        //     } catch (err) {
-        //         console.error('Error saving elimination results:', err);
-        //     }
+        // Check Level 1 cutoff
+        if (level === 1 && score < 5) {
+            // Student is eliminated - save final results and show elimination screen
+            try {
+                await supabase.from('quiz_attempts').insert({
+                    user_id: student.id,
+                    level: 1,
+                    score: score,
+                    time_taken_seconds: time,
+                    answers: {
+                        level1_score: score,
+                        level1_time: time,
+                        status: 'ELIMINATED_AFTER_LEVEL_1',
+                        breakdown: { levelScores: [score], levelTimes: [time] }
+                    }
+                });
+            } catch (err) {
+                console.error('Error saving elimination results:', err);
+            }
 
-        //     // Update state to mark as eliminated
-        //     const newState = {
-        //         ...quizState,
-        //         eliminated: true,
-        //         eliminationLevel: 1
-        //     };
-        //     localStorage.setItem('quiz_state', JSON.stringify(newState));
+            // Update state to mark as eliminated
+            const newState = {
+                ...quizState,
+                eliminated: true,
+                eliminationLevel: 1
+            };
+            localStorage.setItem('quiz_state', JSON.stringify(newState));
 
-        //     // Navigate to Results page (will show elimination message)
-        //     navigate(createPageUrl('Results'));
-        //     return;
-        // }
+            // Navigate to Results page (will show elimination message)
+            navigate(createPageUrl('Results'));
+            return;
+        }
 
-        // Check Level 2 cutoff - DISABLED FOR DEBUGGING
-        // if (level === 2 && score < 18) {
-        //     // Student is eliminated after Level 2 - save final results
-        //     try {
-        //         const totalScore = quizState.levelScores[0] + score;
-        //         const totalTime = quizState.levelTimes[0] + time;
+        // Check Level 2 cutoff
+        if (level === 2 && score < 18) {
+            // Student is eliminated after Level 2 - save final results
+            try {
+                const totalScore = quizState.levelScores[0] + score;
+                const totalTime = quizState.levelTimes[0] + time;
 
-        //         await supabase.from('quiz_attempts').insert({
-        //             user_id: student.id,
-        //             level: 2,
-        //             score: totalScore,
-        //             time_taken_seconds: totalTime,
-        //             answers: {
-        //                 level1_score: quizState.levelScores[0],
-        //                 level1_time: quizState.levelTimes[0],
-        //                 level2_score: score,
-        //                 level2_time: time,
-        //                 status: 'ELIMINATED_AFTER_LEVEL_2',
-        //                 breakdown: {
-        //                     levelScores: [...quizState.levelScores, score],
-        //                     levelTimes: [...quizState.levelTimes, time]
-        //                 }
-        //             }
-        //         });
-        //     } catch (err) {
-        //         console.error('Error saving elimination results:', err);
-        //     }
+                await supabase.from('quiz_attempts').insert({
+                    user_id: student.id,
+                    level: 2,
+                    score: totalScore,
+                    time_taken_seconds: totalTime,
+                    answers: {
+                        level1_score: quizState.levelScores[0],
+                        level1_time: quizState.levelTimes[0],
+                        level2_score: score,
+                        level2_time: time,
+                        status: 'ELIMINATED_AFTER_LEVEL_2',
+                        breakdown: {
+                            levelScores: [...quizState.levelScores, score],
+                            levelTimes: [...quizState.levelTimes, time]
+                        }
+                    }
+                });
+            } catch (err) {
+                console.error('Error saving elimination results:', err);
+            }
 
-        //     // Update state to mark as eliminated
-        //     const newState = {
-        //         ...quizState,
-        //         eliminated: true,
-        //         eliminationLevel: 2
-        //     };
-        //     localStorage.setItem('quiz_state', JSON.stringify(newState));
+            // Update state to mark as eliminated
+            const newState = {
+                ...quizState,
+                eliminated: true,
+                eliminationLevel: 2
+            };
+            localStorage.setItem('quiz_state', JSON.stringify(newState));
 
-        //     // Navigate to Results page (will show elimination message)
-        //     navigate(createPageUrl('Results'));
-        //     return;
-        // }
+            // Navigate to Results page (will show elimination message)
+            navigate(createPageUrl('Results'));
+            return;
+        }
 
         if (level < 3) {
             // Update state for next level
@@ -219,8 +219,8 @@ export default function Summary() {
                         ))}
                     </motion.div>
 
-                    {/* Elimination Warning (Level 1 and Level 2) - DISABLED FOR DEBUGGING */}
-                    {/* {level === 1 && score < 5 && (
+                    {/* Elimination Warning (Level 1 and Level 2) */}
+                    {level === 1 && score < 5 && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -235,9 +235,9 @@ export default function Summary() {
                                 </p>
                             </div>
                         </motion.div>
-                    )} */}
+                    )}
 
-                    {/* {level === 2 && score < 18 && (
+                    {level === 2 && score < 18 && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -252,7 +252,7 @@ export default function Summary() {
                                 </p>
                             </div>
                         </motion.div>
-                    )} */}
+                    )}
 
                     {/* Next button */}
                     <motion.div
