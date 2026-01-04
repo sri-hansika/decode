@@ -270,9 +270,14 @@ export default function Summary() {
                                     View Final Results
                                     <XCircle className="w-5 h-5 ml-2 inline" />
                                 </>
-                            ) : level < 3 ? (
+                            ) : level === 1 ? (
                                 <>
-                                    Start Level {level + 1} - {levelNames[level + 1]}
+                                    Medium Level
+                                    <ArrowRight className="w-5 h-5 ml-2 inline" />
+                                </>
+                            ) : level === 2 ? (
+                                <>
+                                    Hard Level
                                     <ArrowRight className="w-5 h-5 ml-2 inline" />
                                 </>
                             ) : (
