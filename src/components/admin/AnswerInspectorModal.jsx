@@ -6,31 +6,9 @@ export default function AnswerInspectorModal({ isOpen, onClose, student, attempt
     if (!isOpen || !student || !attempt) return null;
 
     const { breakdown, answers } = attempt.answers || {};
-    // attempt.answers usually has: level1_score, level1_time, breakdown: { levelScores: [], levelTimes: [] }
-    // But wait, the `answers` column in `quiz_attempts` stores 'answers' as a key?
-    // In Results.jsx we saved:
-    // answers: {
-    //    level1_score: ...,
-    //    breakdown: { levelScores: ... }
-    // }
-    //
-    // Wait, where are the ACTUAL answers (the user's input)?
-    // Checking Quiz.jsx...
-    // I DO NOT SEE THE ACTUAL USER ANSWERS SAVED IN THE DATABASE IN `Results.jsx` or `Quiz.jsx`.
-    // In `Quiz.jsx`, `saveAndProceed` calculates score but DOES NOT put the `answers` array into the state or DB.
-    //
-    // CRITICAL ISSUE: The user asked to "inspect answers", but the current code DOES NOT SAVE THEM.
-    //
-    // I need to:
-    // 1. Modify `Quiz.jsx` to save the actual `answers` array to localStorage `quiz_state`.
-    // 2. Modify `Results.jsx` (and Summary.jsx) to include these answers in the DB insert.
-    //
-    // Since I cannot "go back" and fix the plan without notifying user (which stops execution), 
-    // I will proceed by:
-    // 1. Implementing the Modal to EXPECT the answers.
-    // 2. THEN Modifying Quiz.jsx and Results.jsx to actually save them.
-    //
-    // This is a "fix" that is necessary for the feature to work.
+
+    // Check if detailed user responses are available (feature added recently)
+    // If not, we will show a "Data not available" message.
 
     // For now, let's assume the data structure will be:
     // attempt.answers.userAnswers = [ [l1_ans1, ...], [l2_ans1, ...], [l3_ans1, ...] ] (Or similar)

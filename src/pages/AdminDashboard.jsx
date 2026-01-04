@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
 import { Search, Trophy, Clock, Eye, AlertCircle, CheckCircle, XCircle, ChevronDown, ChevronUp } from 'lucide-react';
-// import AnswerInspectorModal from '@/components/admin/AnswerInspectorModal';
+
+const AnswerInspectorModal = React.lazy(() => import('@/components/admin/AnswerInspectorModal'));
 
 export default function AdminDashboard() {
     const [students, setStudents] = useState([]);
@@ -164,13 +165,17 @@ export default function AdminDashboard() {
                 )}
             </div>
 
-            {/* Modal temporarily disabled for debugging */}
-            {/* <AnswerInspectorModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                student={selectedStudent}
-                attempt={selectedAttempt}
-            /> */}
+            {/* Modal */}
+            <React.Suspense fallback={null}>
+                {isModalOpen && (
+                    <AnswerInspectorModal
+                        isOpen={isModalOpen}
+                        onClose={() => setIsModalOpen(false)}
+                        student={selectedStudent}
+                        attempt={selectedAttempt}
+                    />
+                )}
+            </React.Suspense>
         </div>
     );
 }
