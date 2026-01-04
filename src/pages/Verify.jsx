@@ -93,57 +93,12 @@ export default function Verify() {
 
                 const student = userData;
 
-                // CRITICAL: Check if user has already attempted the quiz
-                const { data: existingAttempts, error: attemptError } = await supabase
-                    .from('quiz_attempts')
-                    .select('*')
-                    .eq('user_id', student.id)
-                    .maybeSingle(); // Assuming one attempt per user for now
 
-                if (attemptError) throw attemptError;
+                // Resume logic based on quiz_status
+                const quizStatus = student.quiz_status || 'NOT_STARTED';
 
-                if (existingAttempts) {
-                    const attempt = existingAttempts;
-                    // User has already attempted - redirect to results
-                    localStorage.setItem('quiz_student', JSON.stringify({
-                        id: student.id,
-                        name: student.name,
-                        roll_number: student.roll_number,
-                        phone: studentData.phone, // extra fields for local usage
-                        email: student.email,
-                        college: student.college,
-                        branch: student.branch
-                    }));
-
-                    // Store quiz state for results page
-                    const quizState = {
-                        currentLevel: 1, // Default fallback
-                        levelScores: attempt.score ? [attempt.score] : [], // Simplified mapping needed if detailed level tracking is required
-                        eliminated: false, // You might need to add status to schema if this logic persists
-                        alreadyAttempted: true
-                    };
-                    localStorage.setItem('quiz_state', JSON.stringify(quizState));
-
-                    setError('You have already attempted the quiz. Reattempt is not allowed.');
-                    setTimeout(() => {
-                        navigate(createPageUrl('Results'));
-                    }, 2000);
-                    return;
-                }
-
-                // Log the login
-                await supabase.from('login_logs').insert({
-                    name: student.name,
-                    roll_number: student.roll_number,
-                    email: student.email,
-                    phone: studentData.phone,
-                    college: student.college,
-                    branch: student.branch,
-                    section: studentData.section // Note: Schema needs section if it's not there, I added it in schema.sql
-                });
-
-                // Store student info in localStorage
-                localStorage.setItem('quiz_student', JSON.stringify({
+                // Base student object for localStorage
+                const studentStorageData = {
                     id: student.id,
                     name: student.name,
                     roll_number: student.roll_number,
@@ -151,12 +106,96 @@ export default function Verify() {
                     email: student.email,
                     college: student.college,
                     branch: student.branch
-                }));
+                };
 
-                setSuccess(true);
-                setTimeout(() => {
-                    navigate(createPageUrl('Instructions'));
-                }, 1000);
+                // Helper to set local storage and navigate
+                const resumeSession = (path, state) => {
+                    localStorage.setItem('quiz_student', JSON.stringify(studentStorageData));
+                    if (state) {
+                        localStorage.setItem('quiz_state', JSON.stringify(state));
+                    }
+
+                    setSuccess(true);
+                    setTimeout(() => {
+                        navigate(createPageUrl(path) + (state && state.queryParams ? state.queryParams : ''));
+                    }, 1000);
+                };
+
+                // CASE 1: Not started
+                if (quizStatus === 'NOT_STARTED') {
+                    // Initialize fresh state
+                    const initialState = {
+                        currentLevel: 1,
+                        levelScores: [],
+                        levelTimes: [],
+                        eliminated: false
+                    };
+                    resumeSession('Instructions', initialState);
+
+                    // Log the login for fresh starts
+                    await supabase.from('login_logs').insert({
+                        name: student.name,
+                        roll_number: student.roll_number,
+                        email: student.email,
+                        phone: studentData.phone,
+                        college: student.college,
+                        branch: student.branch,
+                        section: studentData.section
+                    });
+                    return;
+                }
+
+                // Parse metadata for restoring state
+                let restoredState = student.quiz_metadata || {
+                    currentLevel: 1,
+                    levelScores: [],
+                    levelTimes: [],
+                    eliminated: false
+                };
+
+                // CASE 2: Qualified Easy -> Go to Easy Results (Summary)
+                if (quizStatus === 'QUALIFIED_EASY') {
+                    // Ensure state reflects completion of level 1
+                    restoredState.currentLevel = 1; // Used by Summary to render Level 1 stats
+                    const score = restoredState.levelScores[0] || 0;
+                    const time = restoredState.levelTimes[0] || 0;
+                    restoredState.queryParams = `?level=1&score=${score}&time=${time}`;
+
+                    resumeSession('Summary', restoredState);
+                    return;
+                }
+
+                // CASE 3: Qualified Medium -> Go to Medium Results (Summary)
+                if (quizStatus === 'QUALIFIED_MEDIUM') {
+                    // Ensure state reflects completion of level 2
+                    restoredState.currentLevel = 2; // Used by Summary to render Level 2 stats
+                    const score = restoredState.levelScores[1] || 0;
+                    const time = restoredState.levelTimes[1] || 0;
+                    restoredState.queryParams = `?level=2&score=${score}&time=${time}`;
+
+                    resumeSession('Summary', restoredState);
+                    return;
+                }
+
+                // CASE 4: Disqualified (Level 1 or Level 2)
+                if (quizStatus === 'ELIMINATED_AFTER_LEVEL_1' || quizStatus === 'ELIMINATED_AFTER_LEVEL_2') {
+                    restoredState.eliminated = true;
+                    restoredState.eliminationLevel = quizStatus === 'ELIMINATED_AFTER_LEVEL_1' ? 1 : 2;
+                    resumeSession('Results', restoredState);
+                    return;
+                }
+
+                // CASE 5: Completed Hard (All Finished)
+                if (quizStatus === 'COMPLETED') {
+                    restoredState.alreadyAttempted = true; // Mark as done to prevent re-save or edits
+                    resumeSession('Results', restoredState);
+                    return;
+                }
+
+                // Fallback for unknown states (treat as resuming at last known point or results)
+                resumeSession('Results', restoredState);
+
+
             } else {
                 setError('You are not registered for this event. Please check your roll number.');
             }

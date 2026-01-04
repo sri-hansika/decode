@@ -26,8 +26,54 @@ export default function Summary() {
         }
 
         setStudent(JSON.parse(storedStudent));
-        setQuizState(JSON.parse(storedState));
-    }, [navigate]);
+        const state = JSON.parse(storedState);
+        setQuizState(state);
+
+
+        // Execute update immediately (student from closure might be null initially if I don't check)
+        // Actually, student is in state... but setStudent is async? No, React state updates are scheduled.
+        // But here I have access to `JSON.parse` result directly.
+
+        const localStudent = JSON.parse(storedStudent);
+        if (localStudent && state) {
+            // We need to re-implement the update logic with the local variables
+            // to avoid dependency issues with the useEffect or stale state
+            (async () => {
+                let status = 'NOT_STARTED';
+                let lastLevel = 'NONE';
+
+                if (level === 1) {
+                    if (score >= 5) {
+                        status = 'QUALIFIED_EASY';
+                        lastLevel = 'EASY';
+                    } else {
+                        status = 'ELIMINATED_AFTER_LEVEL_1';
+                    }
+                } else if (level === 2) {
+                    if (score >= 18) {
+                        status = 'QUALIFIED_MEDIUM';
+                        lastLevel = 'MEDIUM';
+                    } else {
+                        status = 'ELIMINATED_AFTER_LEVEL_2';
+                    }
+                } else if (level === 3) {
+                    status = 'COMPLETED';
+                    lastLevel = 'HARD';
+                }
+
+                try {
+                    await supabase.from('users').update({
+                        quiz_status: status,
+                        last_completed_level: lastLevel,
+                        quiz_metadata: state
+                    }).eq('id', localStudent.id);
+                } catch (err) {
+                    console.error("Failed to update user progress:", err);
+                }
+            })();
+        }
+
+    }, [navigate, level, score, time]);
 
     const formatTime = (seconds) => {
         const mins = Math.floor(seconds / 60);

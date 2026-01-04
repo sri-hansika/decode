@@ -22,7 +22,10 @@ create table public.users (
   year text,
   college text,
   phone text,
-  section text
+  section text,
+  last_completed_level text, -- NONE, EASY, MEDIUM, HARD
+  quiz_status text default 'NOT_STARTED', -- NOT_STARTED, QUALIFIED_EASY, QUALIFIED_MEDIUM, ELIMINATED_AFTER_LEVEL_1, ELIMINATED_AFTER_LEVEL_2, COMPLETED
+  quiz_metadata jsonb -- Stores intermediate scores and times for resume
 );
 
 -- Create quiz_attempts table
