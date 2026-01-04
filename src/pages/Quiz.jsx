@@ -9,7 +9,7 @@ import QuestionCard from '@/components/quiz/QuestionCard';
 import FillInBlankQuestion from '@/components/quiz/FillInBlankQuestion';
 import WordArrangementQuestion from '@/components/quiz/WordArrangementQuestion';
 import NeonButton from '@/components/quiz/NeonButton';
-import { getRandomQuestionsForLevel } from '@/components/quiz/QuestionData';
+import { fetchRandomQuestionsForLevel } from '@/components/quiz/QuestionData';
 import { ArrowRight } from 'lucide-react';
 
 export default function Quiz() {
@@ -45,13 +45,23 @@ export default function Quiz() {
         setStudent(studentData);
         setQuizState(state);
 
-        // Initialize level - get random questions from combined pool
-        const levelQuestions = getRandomQuestionsForLevel(state.currentLevel);
-        setQuestions(levelQuestions);
-        setLevelStartTime(Date.now());
-        // Question counts: Level 1 = 10, Level 2 = 20, Level 3 = 30
-        const answerCount = state.currentLevel === 1 ? 10 : state.currentLevel === 2 ? 20 : 30;
-        setAnswers(new Array(answerCount).fill(null));
+        // Initialize level - load questions dynamically
+        const initLevel = async () => {
+            try {
+                const levelQuestions = await fetchRandomQuestionsForLevel(state.currentLevel);
+                setQuestions(levelQuestions);
+                setLevelStartTime(Date.now());
+                // Question counts: Level 1 = 10, Level 2 = 20, Level 3 = 30
+                const answerCount = state.currentLevel === 1 ? 10 : state.currentLevel === 2 ? 20 : 30;
+                setAnswers(new Array(answerCount).fill(null));
+            } catch (error) {
+                console.error("Failed to initialize level:", error);
+                // Error is handled by remaining in loading state (or custom error UI could be added)
+                // "Prevent quiz start" - implicit since questions are not set
+            }
+        };
+
+        initLevel();
     }, [navigate]);
 
     const getTimerDuration = () => {
