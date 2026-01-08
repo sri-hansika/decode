@@ -119,6 +119,34 @@
     {
       "abbreviation": "QR",
       "fullForm": "Quick Response"
+    },
+    {
+      "abbreviation": "MBBS",
+      "fullForm": "Bachelor of Surgery"
+    },
+    {
+      "abbreviation": "Multi",
+      "fullForm": "Factor Authentication   MFA"
+    },
+    {
+      "abbreviation": "MOU",
+      "fullForm": "Memorandum of Understanding"
+    },
+    {
+      "abbreviation": "Kernel",
+      "fullForm": "based Virtual Machine   KVM"
+    },
+    {
+      "abbreviation": "NFS",
+      "fullForm": "Network File System"
+    },
+    {
+      "abbreviation": "VLAN",
+      "fullForm": "Virtual Local Area Network"
+    },
+    {
+      "abbreviation": "WLAN",
+      "fullForm": "Wireless Local Area Network"
     }
   ],
   "medium": [
@@ -1121,6 +1149,926 @@
         "Large International Gravitational Observatory",
         "Linear Interferometer Gravity Observatory",
         "Laboratory for Integrated Gravitational Observation"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does DHCP stand for?",
+      "options": [
+        "Dynamic Host Configuration Protocol",
+        "Host Dynamic Configuration Protocol",
+        "General Host Configuration Protocol",
+        "Dynamic Host Configuration Program"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does Telnet stand for?",
+      "options": [
+        "Terminal Network Protocol",
+        "Network Terminal Protocol",
+        "General Network Protocol",
+        "Terminal Network Program"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does MIME stand for?",
+      "options": [
+        "Multipurpose Internet Mail Extensions",
+        "Internet Multipurpose Mail Extensions",
+        "General Internet Mail Extensions",
+        "Multipurpose Internet Mail System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IMAP stand for?",
+      "options": [
+        "Internet Message Access Protocol",
+        "Message Internet Access Protocol",
+        "General Message Access Protocol",
+        "Internet Message Access Program"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does SOAP stand for?",
+      "options": [
+        "Simple Object Access Protocol",
+        "Object Simple Access Protocol",
+        "General Object Access Protocol",
+        "Simple Object Access Program"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does SONAR stand for?",
+      "options": [
+        "Sound Navigation and Ranging",
+        "Navigation Sound and Ranging",
+        "General Navigation and Ranging",
+        "Sound Navigation and System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does RADAR stand for?",
+      "options": [
+        "Radio Detection and Ranging",
+        "Detection Radio and Ranging",
+        "General Detection and Ranging",
+        "Radio Detection and System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does LASER stand for?",
+      "options": [
+        "Light Amplification by Stimulated Emission of Radiation",
+        "Amplification Light by Stimulated Emission of Radiation",
+        "General Amplification by Stimulated Emission of Radiation",
+        "Light Amplification by Stimulated Emission of System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UNICEF stand for?",
+      "options": [
+        "United Nations International Children’s Emergency Fund",
+        "Nations United International Children’s Emergency Fund",
+        "General Nations International Children’s Emergency Fund",
+        "United Nations International Children’s Emergency System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NABARD stand for?",
+      "options": [
+        "National Bank for Agriculture and Rural Development",
+        "Bank National for Agriculture and Rural Development",
+        "New Bank for Agriculture and Rural Development",
+        "National Bank for Agriculture and Rural System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does HDI stand for?",
+      "options": [
+        "Human Development Index",
+        "Development Human Index",
+        "General Development Index",
+        "Human Development System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does MGNREGA stand for?",
+      "options": [
+        "Mahatma Gandhi National Rural Employment Guarantee Act",
+        "Gandhi Mahatma National Rural Employment Guarantee Act",
+        "General Gandhi National Rural Employment Guarantee Act",
+        "Mahatma Gandhi National Rural Employment Guarantee System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does BRICS stand for?",
+      "options": [
+        "Brazil Russia India China South Africa",
+        "Russia Brazil India China South Africa",
+        "General Russia India China South Africa",
+        "Brazil Russia India China South System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NITI stand for?",
+      "options": [
+        "National Institution for Transforming India",
+        "Institution National for Transforming India",
+        "New Institution for Transforming India",
+        "National Institution for Transforming System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IUPAC stand for?",
+      "options": [
+        "International Union of Pure and Applied Chemistry",
+        "Union International of Pure and Applied Chemistry",
+        "Indian Union of Pure and Applied Chemistry",
+        "International Union of Pure and Applied System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does VBT stand for?",
+      "options": [
+        "Valence Bond Theory",
+        "Bond Valence Theory",
+        "General Bond Theory",
+        "Valence Bond System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PVC stand for?",
+      "options": [
+        "Polyvinyl Chloride",
+        "Chloride Polyvinyl",
+        "General Chloride",
+        "Polyvinyl System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does LDPE stand for?",
+      "options": [
+        "Low Density Polyethylene",
+        "Density Low Polyethylene",
+        "General Density Polyethylene",
+        "Low Density System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does HDPE stand for?",
+      "options": [
+        "High Density Polyethylene",
+        "Density High Polyethylene",
+        "General Density Polyethylene",
+        "High Density System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PET stand for?",
+      "options": [
+        "Polyethylene Terephthalate",
+        "Terephthalate Polyethylene",
+        "General Terephthalate",
+        "Polyethylene System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PTFE stand for?",
+      "options": [
+        "Polytetrafluoroethylene",
+        "None of the above",
+        "None of the above",
+        "None of the above"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does OPD stand for?",
+      "options": [
+        "OutPatient Department",
+        "Department OutPatient",
+        "General Department",
+        "OutPatient System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IPD stand for?",
+      "options": [
+        "InPatient Department",
+        "Department InPatient",
+        "General Department",
+        "InPatient System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does FEMA stand for?",
+      "options": [
+        "Foreigna Exchange Management Act",
+        "Exchange Foreigna Management Act",
+        "General Exchange Management Act",
+        "Foreigna Exchange Management System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NDRF stand for?",
+      "options": [
+        "National Disaster Response Force",
+        "Disaster National Response Force",
+        "New Disaster Response Force",
+        "National Disaster Response System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IPC stand for?",
+      "options": [
+        "Indian Penal Code",
+        "Penal Indian Code",
+        "General Penal Code",
+        "Indian Penal System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IDS stand for?",
+      "options": [
+        "Intrusion Detection System",
+        "Detection Intrusion System",
+        "General Detection System",
+        "Intrusion Detection Service"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PKI stand for?",
+      "options": [
+        "Public Key Infrastructure",
+        "Key Public Infrastructure",
+        "General Key Infrastructure",
+        "Public Key System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NDMA stand for?",
+      "options": [
+        "National Disaster Management Authority",
+        "Disaster National Management Authority",
+        "New Disaster Management Authority",
+        "National Disaster Management System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does BSF stand for?",
+      "options": [
+        "Border Security Force",
+        "Security Border Force",
+        "General Security Force",
+        "Border Security System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does CRPF stand for?",
+      "options": [
+        "Central Reserve Police Force",
+        "Reserve Central Police Force",
+        "Common Reserve Police Force",
+        "Central Reserve Police System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UTF stand for?",
+      "options": [
+        "Unicode Transformation Format",
+        "Transformation Unicode Format",
+        "General Transformation Format",
+        "Unicode Transformation System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does OPEC stand for?",
+      "options": [
+        "Organization of Petroleum Exporting Countries",
+        "of Organization Petroleum Exporting Countries",
+        "General of Petroleum Exporting Countries",
+        "Organization of Petroleum Exporting System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IOM stand for?",
+      "options": [
+        "International Organization for Migration",
+        "Organization International for Migration",
+        "Indian Organization for Migration",
+        "International Organization for System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does SWOT stand for?",
+      "options": [
+        "Strengths, Weaknesses, Opportunities, Threats",
+        "Weaknesses, Strengths, Opportunities, Threats",
+        "General Weaknesses, Opportunities, Threats",
+        "Strengths, Weaknesses, Opportunities, System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does CWC stand for?",
+      "options": [
+        "Central Water Commission",
+        "Water Central Commission",
+        "Common Water Commission",
+        "Central Water System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does EWS stand for?",
+      "options": [
+        "Early Warning System",
+        "Warning Early System",
+        "General Warning System",
+        "Early Warning Service"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does FFWC stand for?",
+      "options": [
+        "Flood Forecasting and Warning Centre",
+        "Forecasting Flood and Warning Centre",
+        "General Forecasting and Warning Centre",
+        "Flood Forecasting and Warning System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NCS stand for?",
+      "options": [
+        "National Centre for Seismology",
+        "Centre National for Seismology",
+        "New Centre for Seismology",
+        "National Centre for System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does JTWC stand for?",
+      "options": [
+        "Joint Typhoon Warning Center",
+        "Typhoon Joint Warning Center",
+        "General Typhoon Warning Center",
+        "Joint Typhoon Warning System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UNDP stand for?",
+      "options": [
+        "United Nations Development Programme",
+        "Nations United Development Programme",
+        "General Nations Development Programme",
+        "United Nations Development System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UNHCR stand for?",
+      "options": [
+        "United Nations High Commissioner for Refugees",
+        "Nations United High Commissioner for Refugees",
+        "General Nations High Commissioner for Refugees",
+        "United Nations High Commissioner for System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does FAO stand for?",
+      "options": [
+        "Food and Agriculture Organization",
+        "and Food Agriculture Organization",
+        "General and Agriculture Organization",
+        "Food and Agriculture System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UNIDO stand for?",
+      "options": [
+        "United Nations Industrial Development Organization",
+        "Nations United Industrial Development Organization",
+        "General Nations Industrial Development Organization",
+        "United Nations Industrial Development System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UNEP stand for?",
+      "options": [
+        "United Nations Environment Programme",
+        "Nations United Environment Programme",
+        "General Nations Environment Programme",
+        "United Nations Environment System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PIO stand for?",
+      "options": [
+        "Person of Indian Origin",
+        "of Person Indian Origin",
+        "General of Indian Origin",
+        "Person of Indian System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does Asia stand for?",
+      "options": [
+        "Pacific Economic Cooperation   APEC",
+        "Economic Pacific Cooperation   APEC",
+        "General Economic Cooperation   APEC",
+        "Pacific Economic Cooperation   System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UNFCCC stand for?",
+      "options": [
+        "United Nations Framework Convention on Climate Change",
+        "Nations United Framework Convention on Climate Change",
+        "General Nations Framework Convention on Climate Change",
+        "United Nations Framework Convention on Climate System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IPCC stand for?",
+      "options": [
+        "Intergovernmental Panel on Climate Change",
+        "Panel Intergovernmental on Climate Change",
+        "General Panel on Climate Change",
+        "Intergovernmental Panel on Climate System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does FCA stand for?",
+      "options": [
+        "Forest Conservation Act",
+        "Conservation Forest Act",
+        "General Conservation Act",
+        "Forest Conservation System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does WLPA stand for?",
+      "options": [
+        "Wildlife Protection Act",
+        "Protection Wildlife Act",
+        "General Protection Act",
+        "Wildlife Protection System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NDPSAct stand for?",
+      "options": [
+        "Narcotic Drugs and Psychotropic Substances Act",
+        "Drugs Narcotic and Psychotropic Substances Act",
+        "General Drugs and Psychotropic Substances Act",
+        "Narcotic Drugs and Psychotropic Substances System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does LARRAct stand for?",
+      "options": [
+        "Land Acquisition, Rehabilitation and Resettlement Act",
+        "Acquisition, Land Rehabilitation and Resettlement Act",
+        "General Acquisition, Rehabilitation and Resettlement Act",
+        "Land Acquisition, Rehabilitation and Resettlement System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does ECG stand for?",
+      "options": [
+        "Electrocardiogram",
+        "None of the above",
+        "None of the above",
+        "None of the above"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does CRC stand for?",
+      "options": [
+        "Convention on the Rights of the Child",
+        "on Convention the Rights of the Child",
+        "General on the Rights of the Child",
+        "Convention on the Rights of the System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does CPC stand for?",
+      "options": [
+        "Code of Civil Procedure",
+        "of Code Civil Procedure",
+        "General of Civil Procedure",
+        "Code of Civil System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NIC stand for?",
+      "options": [
+        "Network Interface Card",
+        "Interface Network Card",
+        "General Interface Card",
+        "Network Interface System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IRQ stand for?",
+      "options": [
+        "Interrupt Request",
+        "Request Interrupt",
+        "General Request",
+        "Interrupt System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does OnSSO stand for?",
+      "options": [
+        "Single Sign",
+        "Sign Single",
+        "General Sign",
+        "Single System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does DoS stand for?",
+      "options": [
+        "Denial of Service",
+        "of Denial Service",
+        "General of Service",
+        "Denial of System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does DES stand for?",
+      "options": [
+        "Data Encryption Standard",
+        "Encryption Data Standard",
+        "General Encryption Standard",
+        "Data Encryption System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does Adelson stand for?",
+      "options": [
+        "Velsky and Landis Tree   AVL",
+        "and Velsky Landis Tree   AVL",
+        "General and Landis Tree   AVL",
+        "Velsky and Landis Tree   System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does Eg stand for?",
+      "options": [
+        "exempli gratia",
+        "gratia exempli",
+        "General gratia",
+        "exempli System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does MIT stand for?",
+      "options": [
+        "Massachusetts Institute of Technology",
+        "Institute Massachusetts of Technology",
+        "General Institute of Technology",
+        "Massachusetts Institute of System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PSLV stand for?",
+      "options": [
+        "Polar Satellite Launch Vehicle",
+        "Satellite Polar Launch Vehicle",
+        "General Satellite Launch Vehicle",
+        "Polar Satellite Launch System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does RSS stand for?",
+      "options": [
+        "Rashtriya Swayam Sewak Sangh",
+        "Swayam Rashtriya Sewak Sangh",
+        "General Swayam Sewak Sangh",
+        "Rashtriya Swayam Sewak System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does SAIL stand for?",
+      "options": [
+        "Steel Authority of India",
+        "Authority Steel of India",
+        "General Authority of India",
+        "Steel Authority of System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does UGC stand for?",
+      "options": [
+        "University Grants Commission",
+        "Grants University Commission",
+        "General Grants Commission",
+        "University Grants System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does BHEL stand for?",
+      "options": [
+        "Bharat Heavy Electricals Limited",
+        "Heavy Bharat Electricals Limited",
+        "General Heavy Electricals Limited",
+        "Bharat Heavy Electricals System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does GRE stand for?",
+      "options": [
+        "Graduate Record Examination",
+        "Record Graduate Examination",
+        "General Record Examination",
+        "Graduate Record System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NSEI stand for?",
+      "options": [
+        "National Stock Exchange of India",
+        "Stock National Exchange of India",
+        "New Stock Exchange of India",
+        "National Stock Exchange of System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does POW stand for?",
+      "options": [
+        "Prisoner of War",
+        "of Prisoner War",
+        "General of War",
+        "Prisoner of System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does SLV stand for?",
+      "options": [
+        "Satellite Launch Vehicle",
+        "Launch Satellite Vehicle",
+        "General Launch Vehicle",
+        "Satellite Launch System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does CFSL stand for?",
+      "options": [
+        "Central Forensic Science Laboratory",
+        "Forensic Central Science Laboratory",
+        "Common Forensic Science Laboratory",
+        "Central Forensic Science System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does CIA stand for?",
+      "options": [
+        "Central Intelligence Agency",
+        "Intelligence Central Agency",
+        "Common Intelligence Agency",
+        "Central Intelligence System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does DDT stand for?",
+      "options": [
+        "Dichloro diphenyl trichloro ethane",
+        "diphenyl Dichloro trichloro ethane",
+        "General diphenyl trichloro ethane",
+        "Dichloro diphenyl trichloro System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does FIFA stand for?",
+      "options": [
+        "Fédération Internationale de Football Association",
+        "Internationale Fédération de Football Association",
+        "General Internationale de Football Association",
+        "Fédération Internationale de Football System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IBM stand for?",
+      "options": [
+        "International Business Machines",
+        "Business International Machines",
+        "Indian Business Machines",
+        "International Business System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NuclearNon stand for?",
+      "options": [
+        "Proliferation Treaty   NPT",
+        "Treaty Proliferation   NPT",
+        "General Treaty   NPT",
+        "Proliferation Treaty   System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IATA stand for?",
+      "options": [
+        "International Air Transport Association",
+        "Air International Transport Association",
+        "Indian Air Transport Association",
+        "International Air Transport System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does ICAO stand for?",
+      "options": [
+        "International Civil Aviation Organization",
+        "Civil International Aviation Organization",
+        "Indian Civil Aviation Organization",
+        "International Civil Aviation System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IRCTC stand for?",
+      "options": [
+        "Indian Railway Catering and Tourism Corporation",
+        "Railway Indian Catering and Tourism Corporation",
+        "General Railway Catering and Tourism Corporation",
+        "Indian Railway Catering and Tourism System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PNR stand for?",
+      "options": [
+        "Passenger Name Record",
+        "Name Passenger Record",
+        "General Name Record",
+        "Passenger Name System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IFSC stand for?",
+      "options": [
+        "Indian Financial System Code",
+        "Financial Indian System Code",
+        "General Financial System Code",
+        "Indian Financial System System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NEFT stand for?",
+      "options": [
+        "National Electronic Funds Transfer",
+        "Electronic National Funds Transfer",
+        "New Electronic Funds Transfer",
+        "National Electronic Funds System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does IELTS stand for?",
+      "options": [
+        "International English Language Testing System",
+        "English International Language Testing System",
+        "Indian English Language Testing System",
+        "International English Language Testing Service"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does PCR stand for?",
+      "options": [
+        "Polymerase Chain Reaction",
+        "Chain Polymerase Reaction",
+        "General Chain Reaction",
+        "Polymerase Chain System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does AICTE stand for?",
+      "options": [
+        "All India Council for Technical Education",
+        "India All Council for Technical Education",
+        "General India Council for Technical Education",
+        "All India Council for Technical System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does RPG stand for?",
+      "options": [
+        "Rocket Propelled Grenade",
+        "Propelled Rocket Grenade",
+        "General Propelled Grenade",
+        "Rocket Propelled System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does OSS stand for?",
+      "options": [
+        "Open Source Software",
+        "Source Open Software",
+        "General Source Software",
+        "Open Source System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does SAN stand for?",
+      "options": [
+        "Storage Area Network",
+        "Area Storage Network",
+        "General Area Network",
+        "Storage Area System"
+      ],
+      "answer": 0
+    },
+    {
+      "question": "What does NAS stand for?",
+      "options": [
+        "Network Attached Storage",
+        "Attached Network Storage",
+        "General Attached Storage",
+        "Network Attached System"
       ],
       "answer": 0
     }
