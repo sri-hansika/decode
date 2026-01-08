@@ -128,6 +128,8 @@ export default function AdminDashboard() {
                                     <tr className="border-b border-gray-800 bg-gray-900/80 text-gray-400 text-sm uppercase tracking-wider">
                                         <th className="p-4 w-16 text-center">#</th>
                                         <th className="p-4">Student</th>
+                                        <th className="p-4">Email</th>
+                                        <th className="p-4">Year</th>
                                         <th className="p-4">Score</th>
                                         <th className="p-4">Time</th>
                                         <th className="p-4">Status</th>
@@ -143,6 +145,8 @@ export default function AdminDashboard() {
                                                 <div className="font-semibold">{student.name}</div>
                                                 <div className="text-xs text-gray-400">{student.roll_number}</div>
                                             </td>
+                                            <td className="p-4 text-gray-300">{student.email || '-'}</td>
+                                            <td className="p-4 text-gray-300">{student.year || '-'}</td>
                                             <td className="p-4 font-bold">{student.score}</td>
                                             <td className="p-4 text-gray-400">{formatTime(student.time)}</td>
                                             <td className="p-4">
