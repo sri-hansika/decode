@@ -10,7 +10,8 @@ import FillInBlankQuestion from '@/components/quiz/FillInBlankQuestion';
 import WordArrangementQuestion from '@/components/quiz/WordArrangementQuestion';
 import NeonButton from '@/components/quiz/NeonButton';
 import { fetchRandomQuestionsForLevel } from '@/components/quiz/QuestionData';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, AlertTriangle } from 'lucide-react';
+import useTabSwitchListener from '@/hooks/useTabSwitchListener';
 
 export default function Quiz() {
     const navigate = useNavigate();
@@ -23,6 +24,33 @@ export default function Quiz() {
     const [levelStartTime, setLevelStartTime] = useState(null);
     const [timerKey, setTimerKey] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
+
+    // --- Disqualification Logic ---
+    const handleDisqualification = useCallback(() => {
+        // Only run if we have valid state to save (prevent running on initial load if not ready)
+        // actually, if disqualified, we should just blast them to results with a flag.
+
+        // Update state to reflect disqualification if needed, but primarily we want to END it.
+        // We'll save what we have so far, maybe? Or just force end.
+        // Let's reuse saveAndProceed logic but force a finish, OR just simple navigate.
+        // The requirement says "Show the final results page".
+
+        // Let's try to update local storage to say "disqualified" so Results page knows.
+        const storedState = localStorage.getItem('quiz_state');
+        if (storedState) {
+            const state = JSON.parse(storedState);
+            const newState = { ...state, disqualified: true, alreadyAttempted: true };
+            localStorage.setItem('quiz_state', JSON.stringify(newState));
+        }
+
+        navigate(createPageUrl('Results'));
+    }, [navigate]);
+
+    const { warningCount, showWarning, setShowWarning } = useTabSwitchListener(
+        student?.rollNumber, // Use rollNumber as ID
+        3,
+        handleDisqualification
+    );
 
     useEffect(() => {
         const storedStudent = localStorage.getItem('quiz_student');
@@ -187,6 +215,47 @@ export default function Quiz() {
                 <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl" />
             </div>
 
+            {/* Warning Overlay */}
+            <AnimatePresence>
+                {showWarning && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.9, y: 20 }}
+                            className="bg-card border border-destructive/50 text-card-foreground p-6 rounded-xl max-w-md w-full shadow-2xl relative overflow-hidden"
+                        >
+                            <div className="absolute inset-0 bg-destructive/10 animate-pulse pointer-events-none" />
+                            <div className="relative z-10 flex flex-col items-center text-center gap-4">
+                                <div className="w-16 h-16 rounded-full bg-destructive/20 flex items-center justify-center mb-2">
+                                    <AlertTriangle className="w-8 h-8 text-destructive" />
+                                </div>
+                                <h2 className="text-2xl font-bold text-destructive">Warning {warningCount}/3</h2>
+                                <p className="text-muted-foreground">
+                                    Switching tabs or minimizing the browser is not allowed.
+                                    <br />
+                                    <span className="font-semibold text-foreground">
+                                        If you reach 4 warnings, you will be disqualified immediately.
+                                    </span>
+                                </p>
+                                <NeonButton
+                                    variant="pink"
+                                    className="w-full mt-4"
+                                    onClick={() => setShowWarning(false)}
+                                >
+                                    I Understand, Resume Quiz
+                                </NeonButton>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <div className="relative z-10 max-w-3xl mx-auto">
                 {/* Header */}
                 <motion.div
@@ -203,7 +272,7 @@ export default function Quiz() {
                         key={timerKey}
                         duration={getTimerDuration()}
                         onTimeUp={handleTimeUp}
-                        isActive={!isTransitioning}
+                        isActive={!isTransitioning && !showWarning} // Pause timer when showing warning
                     />
                 </motion.div>
 

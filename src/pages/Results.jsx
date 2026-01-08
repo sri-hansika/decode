@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { supabase } from '@/lib/supabase';
-import { Trophy, Clock, Award, Star, LogOut, Home, XCircle } from 'lucide-react';
+import { Trophy, Clock, Award, Star, LogOut, Home, XCircle, AlertTriangle } from 'lucide-react';
 import NeonButton from '@/components/quiz/NeonButton';
 import confetti from 'canvas-confetti';
 
@@ -31,14 +31,14 @@ export default function Results() {
         // Save final results (only if not already eliminated or already attempted)
         const saveFinalResults = async () => {
             // Don't save if already attempted (viewing past results)
+            // But if disqualified, we allow saving if not already saved, to record the 'DISQUALIFIED' status.
             if (stateData.alreadyAttempted) {
+                // If it was already attempted, we check if we need to simply set saved=true
                 setSaved(true);
                 return;
             }
 
             // Check if student was eliminated after Level 1 or Level 2
-            // Note: Eliminations are handled in Summary.jsx, but if they land here without saving there (edge case), handle it?
-            // Summary.jsx handles eliminations and marks 'eliminated' in state.
             if (stateData.eliminated && (stateData.eliminationLevel === 1 || stateData.eliminationLevel === 2)) {
                 setSaved(true);
                 return; // Already saved in Summary page
@@ -68,7 +68,7 @@ export default function Results() {
 
                 await supabase.from('quiz_attempts').insert({
                     user_id: studentData.id,
-                    level: 3, // Completed all levels
+                    level: 3, // Ended context
                     score: totalScore,
                     time_taken_seconds: totalTime,
                     answers: {
@@ -78,7 +78,7 @@ export default function Results() {
                         level2_time: stateData.levelTimes[1] || 0,
                         level3_score: stateData.levelScores[2] || 0,
                         level3_time: stateData.levelTimes[2] || 0,
-                        status: 'COMPLETED',
+                        status: stateData.disqualified ? 'DISQUALIFIED' : 'COMPLETED',
                         breakdown: {
                             levelScores: stateData.levelScores,
                             levelTimes: stateData.levelTimes
@@ -87,7 +87,7 @@ export default function Results() {
                     }
                 });
 
-                // Mark as attempted in local storage so refresh doesn't trigger this again
+                // Mark as attempted in local storage
                 const newState = { ...stateData, alreadyAttempted: true };
                 localStorage.setItem('quiz_state', JSON.stringify(newState));
                 setQuizState(newState);
@@ -102,32 +102,34 @@ export default function Results() {
             saveFinalResults();
         }
 
-        // Trigger confetti
-        const duration = 3 * 1000;
-        const end = Date.now() + duration;
+        // Trigger confetti only if successful
+        if (!stateData.disqualified && !stateData.eliminated && !stateData.alreadyAttempted) {
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
 
-        const frame = () => {
-            confetti({
-                particleCount: 2,
-                angle: 60,
-                spread: 55,
-                origin: { x: 0 },
-                colors: ['#d00000', '#f48c06', '#ffba08']
-            });
-            confetti({
-                particleCount: 2,
-                angle: 120,
-                spread: 55,
-                origin: { x: 1 },
-                colors: ['#d00000', '#f48c06', '#ffba08']
-            });
+            const frame = () => {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#d00000', '#f48c06', '#ffba08']
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#d00000', '#f48c06', '#ffba08']
+                });
 
-            if (Date.now() < end) {
-                requestAnimationFrame(frame);
-            }
-        };
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            };
 
-        frame();
+            frame();
+        }
     }, [navigate, saved]);
 
     const handleLogout = () => {
@@ -145,6 +147,7 @@ export default function Results() {
     if (!student || !quizState) return null;
 
     const isEliminated = quizState.eliminated && (quizState.eliminationLevel === 1 || quizState.eliminationLevel === 2);
+    const isDisqualified = quizState.disqualified;
     const eliminationLevel = quizState.eliminationLevel;
 
     let totalScore, totalTime;
@@ -177,7 +180,7 @@ export default function Results() {
             >
                 <div className="bg-card backdrop-blur-xl rounded-3xl p-8 border border-border shadow-2xl">
                     {/* Already Attempted Warning */}
-                    {quizState.alreadyAttempted && (
+                    {quizState.alreadyAttempted && !isDisqualified && (
                         <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -196,7 +199,19 @@ export default function Results() {
                         transition={{ type: 'spring', stiffness: 200 }}
                         className="text-center mb-8"
                     >
-                        {quizState.alreadyAttempted ? (
+                        {isDisqualified ? (
+                            <>
+                                <div className="w-24 h-24 mx-auto mb-4 bg-destructive/20 rounded-full flex items-center justify-center border border-destructive/30">
+                                    <AlertTriangle className="w-12 h-12 text-destructive" />
+                                </div>
+                                <h1 className="text-3xl md:text-4xl font-bold text-destructive mb-2">
+                                    Disqualified
+                                </h1>
+                                <p className="text-muted-foreground">
+                                    {student.name}, you have been disqualified for multiple tab switches.
+                                </p>
+                            </>
+                        ) : quizState.alreadyAttempted ? (
                             <>
                                 <div className="w-24 h-24 mx-auto mb-4 bg-yellow-500/20 rounded-full flex items-center justify-center border border-yellow-500/30">
                                     <Trophy className="w-12 h-12 text-yellow-500" />
@@ -236,41 +251,59 @@ export default function Results() {
                     </motion.div>
 
                     {/* Final Score */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                        className="text-center mb-8"
-                    >
-                        <div className="text-6xl font-black text-primary mb-2">
-                            {totalScore} / {eliminationLevel === 1 ? 10 : eliminationLevel === 2 ? 30 : 60}
-                        </div>
-                        <p className="text-lg text-muted-foreground">
-                            {eliminationLevel === 1 ? 'Level 1 Score' : eliminationLevel === 2 ? 'Total Score (L1+L2)' : 'Total Score'}
-                        </p>
-                    </motion.div>
+                    {!isDisqualified && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                            className="text-center mb-8"
+                        >
+                            <div className="text-6xl font-black text-primary mb-2">
+                                {totalScore} / {eliminationLevel === 1 ? 10 : eliminationLevel === 2 ? 30 : 60}
+                            </div>
+                            <p className="text-lg text-muted-foreground">
+                                {eliminationLevel === 1 ? 'Level 1 Score' : eliminationLevel === 2 ? 'Total Score (L1+L2)' : 'Total Score'}
+                            </p>
+                        </motion.div>
+                    )}
 
                     {/* Total Stats */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="grid grid-cols-2 gap-4 mb-8"
-                    >
-                        <div className="bg-primary/20 rounded-2xl p-6 border border-primary/30 text-center">
-                            <Award className="w-8 h-8 text-primary mx-auto mb-2" />
-                            <p className="text-4xl font-bold text-foreground">{totalScore}/{eliminationLevel === 1 ? 10 : eliminationLevel === 2 ? 30 : 60}</p>
-                            <p className="text-muted-foreground text-sm">{eliminationLevel === 1 ? 'Level 1 Score' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Score'}</p>
-                        </div>
-                        <div className="bg-secondary/20 rounded-2xl p-6 border border-secondary/30 text-center">
-                            <Clock className="w-8 h-8 text-secondary mx-auto mb-2" />
-                            <p className="text-4xl font-bold text-foreground">{formatTime(totalTime)}</p>
-                            <p className="text-muted-foreground text-sm">{eliminationLevel === 1 ? 'Level 1 Time' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Time'}</p>
-                        </div>
-                    </motion.div>
+                    {!isDisqualified && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5 }}
+                            className="grid grid-cols-2 gap-4 mb-8"
+                        >
+                            <div className="bg-primary/20 rounded-2xl p-6 border border-primary/30 text-center">
+                                <Award className="w-8 h-8 text-primary mx-auto mb-2" />
+                                <p className="text-4xl font-bold text-foreground">{totalScore}/{eliminationLevel === 1 ? 10 : eliminationLevel === 2 ? 30 : 60}</p>
+                                <p className="text-muted-foreground text-sm">{eliminationLevel === 1 ? 'Level 1 Score' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Score'}</p>
+                            </div>
+                            <div className="bg-secondary/20 rounded-2xl p-6 border border-secondary/30 text-center">
+                                <Clock className="w-8 h-8 text-secondary mx-auto mb-2" />
+                                <p className="text-4xl font-bold text-foreground">{formatTime(totalTime)}</p>
+                                <p className="text-muted-foreground text-sm">{eliminationLevel === 1 ? 'Level 1 Time' : eliminationLevel === 2 ? 'Total (L1+L2)' : 'Total Time'}</p>
+                            </div>
+                        </motion.div>
+                    )}
 
-                    {/* Level Breakdown / Elimination Message */}
-                    {isEliminated ? (
+                    {/* Level Breakdown / Elimination Message / Disqualified Message */}
+                    {isDisqualified ? (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7 }}
+                            className="mb-8 bg-destructive/10 border border-destructive/30 rounded-xl p-6 text-center"
+                        >
+                            <p className="text-destructive font-semibold">
+                                Action Blocked: Tab Switching
+                            </p>
+                            <p className="text-muted-foreground mt-2">
+                                Your quiz has been terminated because you exceeded the maximum allowed tab switches (3).
+                            </p>
+                        </motion.div>
+                    ) : isEliminated ? (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -368,7 +401,9 @@ export default function Results() {
                     transition={{ delay: 1.1 }}
                     className="text-center text-muted-foreground text-sm mt-6"
                 >
-                    {quizState.alreadyAttempted ? (
+                    {isDisqualified ? (
+                        'You have been disqualified. Contact administrator for queries.'
+                    ) : quizState.alreadyAttempted ? (
                         'Your past quiz results are displayed above. Reattempt is not allowed.'
                     ) : isEliminated ? (
                         'Your results have been saved. Better luck next time!'
