@@ -256,9 +256,14 @@ export default function Quiz() {
                     className="mt-8 flex justify-end gap-4"
                 >
 
+
                     <NeonButton
                         onClick={handleNext}
-                        disabled={selectedAnswer === null || isTransitioning}
+                        disabled={
+                            isTransitioning ||
+                            selectedAnswer === null ||
+                            (quizState.currentLevel === 2 && typeof selectedAnswer === 'string' && selectedAnswer.trim() === '')
+                        }
                         variant={quizState.currentLevel === 1 ? 'cyan' : quizState.currentLevel === 2 ? 'violet' : 'pink'}
                     >
                         {currentQuestion === (quizState.currentLevel === 1 ? 9 : quizState.currentLevel === 2 ? 19 : 29) ? 'Finish Level' : 'Next Question'}
